@@ -105,8 +105,8 @@ $sheet->getStyle('A2')->applyFromArray(array(
 ));
 
 // ── Fila 3: Encabezados ───────────────────────────────────────────────────────
-$headers = ['Departamento', 'Municipio', 'Zona', 'Puesto', 'Nombre Puesto', 'Mesa', 'Votos'];
-$cols    = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+$headers = array('Departamento', 'Municipio', 'Zona', 'Puesto', 'Nombre Puesto', 'Mesa', 'Votos');
+$cols    = array('A', 'B', 'C', 'D', 'E', 'F', 'G');
 foreach ($headers as $i => $h) {
     $sheet->setCellValue($cols[$i] . '3', $h);
 }
@@ -208,11 +208,11 @@ $sheet->freezePaneByColumnAndRow(0, 4);
 
 // ── Enviar al navegador ───────────────────────────────────────────────────────
 $safeId   = preg_replace('/[^A-Za-z0-9_]/', '_', $id_candidato);
-$filename = 'Detalle_Votos_' . $safeId . '_' . date('Ymd_His') . '.xlsx';
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+$filename = 'Detalle_Votos_' . $safeId . '_' . date('Ymd_His') . '.xls';
+header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment; filename="' . $filename . '"');
 header('Cache-Control: max-age=0');
 
-$writer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+$writer = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
 $writer->save('php://output');
 exit;

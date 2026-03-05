@@ -104,8 +104,8 @@ $sheet->getStyle('A3:F3')->applyFromArray(array(
 ));
 
 // ── Fila 4: Encabezados ───────────────────────────────────────────────────────
-$headers = ['#', 'Candidato', 'Partido', 'Votos', '% del Total', '% Válidos'];
-$cols    = ['A', 'B', 'C', 'D', 'E', 'F'];
+$headers = array('#', 'Candidato', 'Partido', 'Votos', '% del Total', '% Válidos');
+$cols    = array('A', 'B', 'C', 'D', 'E', 'F');
 foreach ($headers as $i => $h) {
     $sheet->setCellValue($cols[$i] . '4', $h);
 }
@@ -161,11 +161,11 @@ $sheet->getColumnDimension('E')->setWidth(14);
 $sheet->getColumnDimension('F')->setWidth(14);
 
 // ── Enviar al navegador ───────────────────────────────────────────────────────
-$filename = 'Resultados_Consolidados_' . $aspirante . '_' . date('Ymd_His') . '.xlsx';
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+$filename = 'Resultados_Consolidados_' . $aspirante . '_' . date('Ymd_His') . '.xls';
+header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment; filename="' . $filename . '"');
 header('Cache-Control: max-age=0');
 
-$writer = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+$writer = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
 $writer->save('php://output');
 exit;
