@@ -47,7 +47,7 @@ $sql = "SELECT r.zona, r.puesto, r.mesa, r.votos, r.dpto, r.muni,
                          AND z.dpto_zona = r.dpto
                          AND z.mun_zona  = r.muni
         WHERE r.id_candidato = :id_candidato AND r.aspirante = :aspirante";
-$params = [':id_candidato' => $id_candidato, ':aspirante' => $aspirante];
+$params = array(':id_candidato' => $id_candidato, ':aspirante' => $aspirante);
 if (!empty($dpto)) { $sql .= " AND r.dpto = :dpto"; $params[':dpto'] = $dpto; }
 if (!empty($muni)) { $sql .= " AND r.muni = :muni"; $params[':muni'] = $muni; }
 $sql .= " ORDER BY r.dpto ASC, r.muni ASC, r.zona ASC, r.puesto ASC, r.mesa ASC";
@@ -58,13 +58,13 @@ $stmt->execute();
 $filas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Agrupar por zona/puesto
-$grupos = [];
+$grupos = array();
 $totalGeneral = 0;
 foreach ($filas as $row) {
     $gKey = $row['dpto'] . '|' . $row['muni'] . '|' . $row['zona'] . '|' . $row['puesto'];
     if (!isset($grupos[$gKey])) {
-        $grupos[$gKey] = [
-            'dpto'       => $row['dpto'],
+        $grupos[$gKey] = array(
+            'dpto'       => $row['dpto'),
             'muni'       => $row['muni'],
             'zona'       => $row['zona'],
             'puesto'     => $row['puesto'],
@@ -73,7 +73,7 @@ foreach ($filas as $row) {
             'subtotal'   => 0,
         ];
     }
-    $grupos[$gKey]['mesas'][] = ['mesa' => $row['mesa'], 'votos' => intval($row['votos'])];
+    $grupos[$gKey]['mesas'][] = array('mesa' => $row['mesa'), 'votos' => intval($row['votos'])];
     $grupos[$gKey]['subtotal'] += intval($row['votos']);
     $totalGeneral += intval($row['votos']);
 }

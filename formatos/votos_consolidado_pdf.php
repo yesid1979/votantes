@@ -27,7 +27,7 @@ $sql = "SELECT r.id_candidato, SUM(r.votos) AS total_votos,
         FROM registro_votos r
         LEFT JOIN candidatos c ON c.id_candidato = r.id_candidato
         WHERE r.aspirante = :aspirante";
-$params = [':aspirante' => $aspirante];
+$params = array(':aspirante' => $aspirante);
 if (!empty($dpto)) { $sql .= " AND r.dpto = :dpto"; $params[':dpto'] = $dpto; }
 if (!empty($muni)) { $sql .= " AND r.muni = :muni"; $params[':muni'] = $muni; }
 $sql .= " GROUP BY r.id_candidato ORDER BY total_votos DESC";

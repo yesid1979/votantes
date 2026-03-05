@@ -181,13 +181,13 @@
                 <?php 
                 // 1. Cargar permisos del ROL para mostrar como "sugeridos"
                 $permisosRolRaw = $this->permisoModel->getPermisosByTipo($usuario['id_tipo']);
-                $permisosRol = [];
+                $permisosRol = array();
                 foreach($permisosRolRaw as $pr) {
                     $permisosRol[$pr['id_modulo']] = $pr;
                 }
 
                 // 2. Cargar permisos personalizados del USUARIO
-                $permisosActuales = [];
+                $permisosActuales = array();
                 $tienePersonalizados = false;
                 if(isset($permisosUsuario) && is_array($permisosUsuario) && count($permisosUsuario) > 0) {
                     $tienePersonalizados = true;

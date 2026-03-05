@@ -38,9 +38,9 @@ class UsuarioController {
     public function store() {
         header('Content-Type: application/json');
         if ($this->model->registrarUsuario($_POST)) {
-            echo json_encode(['status' => 'success', 'message' => 'Bien hecho, los datos han sido agregados correctamente.']);
+            echo json_encode(array('status' => 'success', 'message' => 'Bien hecho, los datos han sido agregados correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error, no se pudo registrar los datos.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Error, no se pudo registrar los datos.'));
         }
     }
 
@@ -70,12 +70,12 @@ class UsuarioController {
         header('Content-Type: application/json');
         try {
             if ($this->model->actualizarUsuario($_POST)) {
-                 echo json_encode(['status' => 'success', 'message' => 'Bien hecho, el registro ha sido actualizado correctamente.']);
+                 echo json_encode(array('status' => 'success', 'message' => 'Bien hecho, el registro ha sido actualizado correctamente.'));
             } else {
-                 echo json_encode(['status' => 'error', 'message' => 'Error, no se pudo actualizar los datos.']);
+                 echo json_encode(array('status' => 'error', 'message' => 'Error, no se pudo actualizar los datos.'));
             }
         } catch (Exception $e) {
-            echo json_encode(['status' => 'error', 'message' => 'Error: ' . $e->getMessage()]);
+            echo json_encode(array('status' => 'error', 'message' => 'Error: ' . $e->getMessage()));
         }
     }
 
@@ -83,12 +83,12 @@ class UsuarioController {
         header('Content-Type: application/json');
         if(isset($_POST['id'])) {
              if ($this->model->bajaUsuario($_POST['id'])) {
-                 echo json_encode(['status' => 'success', 'message' => 'Registros eliminados correctamente.']);
+                 echo json_encode(array('status' => 'success', 'message' => 'Registros eliminados correctamente.'));
              } else {
-                 echo json_encode(['status' => 'error', 'message' => 'Error al eliminar registros.']);
+                 echo json_encode(array('status' => 'error', 'message' => 'Error al eliminar registros.'));
              }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se seleccionaron registros.']);
+            echo json_encode(array('status' => 'error', 'message' => 'No se seleccionaron registros.'));
         }
     }
 
@@ -102,9 +102,9 @@ class UsuarioController {
         $dir = $_POST['direccion_up'];
 
         if ($this->model->updatePerfil($id, $nombre, $email, $tel, $cel, $dir)) {
-            echo json_encode(['status' => 'success', 'message' => 'Perfil actualizado correctamente.']);
+            echo json_encode(array('status' => 'success', 'message' => 'Perfil actualizado correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al actualizar el perfil.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Error al actualizar el perfil.'));
         }
     }
 
@@ -115,14 +115,14 @@ class UsuarioController {
         $pass2 = $_POST['newPassword2_up'];
 
         if ($pass1 !== $pass2) {
-            echo json_encode(['status' => 'error', 'message' => 'Las contraseñas no coinciden.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Las contraseñas no coinciden.'));
             return;
         }
 
         if ($this->model->changePassword($id, $pass1)) {
-            echo json_encode(['status' => 'success', 'message' => 'Contraseña cambiada correctamente.']);
+            echo json_encode(array('status' => 'success', 'message' => 'Contraseña cambiada correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al cambiar la contraseña.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Error al cambiar la contraseña.'));
         }
     }
 

@@ -22,7 +22,7 @@ class PermisoModel {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Error getModulos: " . $e->getMessage());
-            return [];
+            return array();
         }
     }
 
@@ -37,7 +37,7 @@ class PermisoModel {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Error getPermisosByUsuario: " . $e->getMessage());
-            return [];
+            return array();
         }
     }
 
@@ -53,7 +53,7 @@ class PermisoModel {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Error getPermisosByTipo: " . $e->getMessage());
-            return [];
+            return array();
         }
     }
 }

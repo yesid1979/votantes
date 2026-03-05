@@ -122,7 +122,7 @@ class RegistroVotoModel {
                                  AND z.mun_zona  = r.muni
                 WHERE r.id_candidato = :id_candidato AND r.aspirante = :aspirante ";
 
-        $params = [':id_candidato' => $id_candidato, ':aspirante' => $aspirante];
+        $params = array(':id_candidato' => $id_candidato, ':aspirante' => $aspirante);
 
         if (!empty($dpto)) {
             $sql .= " AND r.dpto = :dpto ";

@@ -76,7 +76,7 @@ $(document).ready(function() {
 
     // Delete Logic with SweetAlert
     $('#btn_delete').on('click', function() {
-        var id = [];
+        var id = array();
         $('.delete_student:checked').each(function(i) {
             id[i] = $(this).val();		
         });

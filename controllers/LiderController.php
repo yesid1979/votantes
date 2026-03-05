@@ -26,9 +26,9 @@ class LiderController {
 
     public function store() {
         if ($this->model->registrarLider($_POST)) {
-            echo json_encode(['status' => 'success', 'message' => 'Líder registrado correctamente.']);
+            echo json_encode(array('status' => 'success', 'message' => 'Líder registrado correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al registrar.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Error al registrar.'));
         }
     }
 
@@ -50,21 +50,21 @@ class LiderController {
 
     public function update() {
         if ($this->model->actualizarLider($_POST)) {
-             echo json_encode(['status' => 'success', 'message' => 'Datos actualizados correctamente.']);
+             echo json_encode(array('status' => 'success', 'message' => 'Datos actualizados correctamente.'));
         } else {
-             echo json_encode(['status' => 'error', 'message' => 'Error al actualizar.']);
+             echo json_encode(array('status' => 'error', 'message' => 'Error al actualizar.'));
         }
     }
 
     public function delete() {
         if(isset($_POST['id'])) {
              if ($this->model->bajaLider($_POST['id'])) {
-                 echo json_encode(['status' => 'success', 'message' => 'Registros eliminados correctamente.']);
+                 echo json_encode(array('status' => 'success', 'message' => 'Registros eliminados correctamente.'));
              } else {
-                 echo json_encode(['status' => 'error', 'message' => 'Error al eliminar registros.']);
+                 echo json_encode(array('status' => 'error', 'message' => 'Error al eliminar registros.'));
              }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se seleccionaron registros.']);
+            echo json_encode(array('status' => 'error', 'message' => 'No se seleccionaron registros.'));
         }
     }
 

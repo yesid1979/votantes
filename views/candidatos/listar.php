@@ -92,7 +92,7 @@ $(document).ready(function() {
 
     // Delete selected
     $('#btn_delete').on('click', function() {
-        var id = [];
+        var id = array();
         $('.delete_student:checked').each(function(i) {
             id[i] = $(this).val();
         });
@@ -135,7 +135,7 @@ $(document).ready(function() {
 
     // Cambiar Estado selected
     $('#btn_toggle_estado').on('click', function() {
-        var id = [];
+        var id = array();
         $('.delete_student:checked').each(function(i) {
             id[i] = $(this).val();
         });

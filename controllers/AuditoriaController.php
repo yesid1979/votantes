@@ -64,12 +64,12 @@ class AuditoriaController {
         header('Content-Type: application/json');
         if(isset($_POST['id'])) {
             if ($this->model->bajaAuditoria($_POST['id'])) {
-                echo json_encode(['status' => 'success', 'message' => 'Registros eliminados correctamente.']);
+                echo json_encode(array('status' => 'success', 'message' => 'Registros eliminados correctamente.'));
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Error al eliminar registros.']);
+                echo json_encode(array('status' => 'error', 'message' => 'Error al eliminar registros.'));
             }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se seleccionaron registros.']);
+            echo json_encode(array('status' => 'error', 'message' => 'No se seleccionaron registros.'));
         }
     }
 }

@@ -52,7 +52,7 @@ $sql = "SELECT r.zona, r.puesto, r.mesa, r.votos, r.dpto, r.muni,
                          AND z.mun_zona  = r.muni
         WHERE r.id_candidato = :id_candidato AND r.aspirante = :aspirante";
 
-$params = [':id_candidato' => $id_candidato, ':aspirante' => $aspirante];
+$params = array(':id_candidato' => $id_candidato, ':aspirante' => $aspirante);
 if (!empty($dpto)) { $sql .= " AND r.dpto = :dpto"; $params[':dpto'] = $dpto; }
 if (!empty($muni)) { $sql .= " AND r.muni = :muni"; $params[':muni'] = $muni; }
 $sql .= " ORDER BY r.dpto ASC, r.muni ASC, r.zona ASC, r.puesto ASC, r.mesa ASC";
@@ -128,12 +128,12 @@ $groupVotos  = 0;
 $groupStart  = 4;
 
 // Para insertar subtotales necesitamos recorrer por grupos
-$grupos = [];
+$grupos = array();
 foreach ($datos as $d) {
     $gKey = $d['dpto'] . '|' . $d['muni'] . '|' . $d['zona'] . '|' . $d['puesto'];
     if (!isset($grupos[$gKey])) {
-        $grupos[$gKey] = [
-            'dpto'      => $d['dpto'],
+        $grupos[$gKey] = array(
+            'dpto'      => $d['dpto'),
             'muni'      => $d['muni'],
             'zona'      => $d['zona'],
             'puesto'    => $d['puesto'],
@@ -142,7 +142,7 @@ foreach ($datos as $d) {
             'subtotal'  => 0,
         ];
     }
-    $grupos[$gKey]['mesas'][] = ['mesa' => $d['mesa'], 'votos' => intval($d['votos'])];
+    $grupos[$gKey]['mesas'][] = array('mesa' => $d['mesa'), 'votos' => intval($d['votos'])];
     $grupos[$gKey]['subtotal'] += intval($d['votos']);
     $totalGeneral += intval($d['votos']);
 }

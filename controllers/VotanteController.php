@@ -29,9 +29,9 @@ class VotanteController {
 
     public function store() {
         if ($this->model->registrarVotante($_POST)) {
-            echo json_encode(['status' => 'success', 'message' => 'Votante registrado correctamente.']);
+            echo json_encode(array('status' => 'success', 'message' => 'Votante registrado correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al registrar.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Error al registrar.'));
         }
     }
 
@@ -61,9 +61,9 @@ class VotanteController {
 
     public function update() {
         if ($this->model->actualizarVotante($_POST)) {
-             echo json_encode(['status' => 'success', 'message' => 'Datos actualizados correctamente.']);
+             echo json_encode(array('status' => 'success', 'message' => 'Datos actualizados correctamente.'));
         } else {
-             echo json_encode(['status' => 'error', 'message' => 'Error al actualizar.']);
+             echo json_encode(array('status' => 'error', 'message' => 'Error al actualizar.'));
         }
     }
 
@@ -78,19 +78,19 @@ class VotanteController {
                  foreach($ids as $id) {
                      $v = $this->model->getVotanteById($id);
                      if($v && $v['ced_lider'] != $_SESSION['cedula']) {
-                         echo json_encode(['status' => 'error', 'message' => 'No tiene permiso para eliminar uno o más de los registros seleccionados.']);
+                         echo json_encode(array('status' => 'error', 'message' => 'No tiene permiso para eliminar uno o más de los registros seleccionados.'));
                          exit;
                      }
                  }
              }
 
              if ($this->model->bajaVotante($ids)) {
-                 echo json_encode(['status' => 'success', 'message' => 'Registros eliminados correctamente.']);
+                 echo json_encode(array('status' => 'success', 'message' => 'Registros eliminados correctamente.'));
              } else {
-                 echo json_encode(['status' => 'error', 'message' => 'Error al eliminar registros.']);
+                 echo json_encode(array('status' => 'error', 'message' => 'Error al eliminar registros.'));
              }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se seleccionaron registros.']);
+            echo json_encode(array('status' => 'error', 'message' => 'No se seleccionaron registros.'));
         }
     }
 

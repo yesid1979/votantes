@@ -25,9 +25,9 @@ class ZonaController {
 
     public function store() {
         if ($this->model->registrarZona($_POST)) {
-            echo json_encode(['status' => 'success', 'message' => 'Zona agregada correctamente.']);
+            echo json_encode(array('status' => 'success', 'message' => 'Zona agregada correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al registrar.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Error al registrar.'));
         }
     }
 
@@ -46,22 +46,22 @@ class ZonaController {
 
     public function update() {
         if ($this->model->actualizarZona($_POST)) {
-             echo json_encode(['status' => 'success', 'message' => 'Zona actualizada correctamente.']);
+             echo json_encode(array('status' => 'success', 'message' => 'Zona actualizada correctamente.'));
         } else {
-             echo json_encode(['status' => 'error', 'message' => 'Error al actualizar.']);
+             echo json_encode(array('status' => 'error', 'message' => 'Error al actualizar.'));
         }
     }
 
     public function delete() {
         if(isset($_POST['id'])) {
              if ($this->model->bajaZona($_POST['id'])) {
-                 echo json_encode(['status' => 'success', 'message' => 'Registros eliminados correctamente.']);
-             } else {
-                 echo json_encode(['status' => 'error', 'message' => 'Error al eliminar registros.']);
-             }
+             echo json_encode(array('status' => 'success', 'message' => 'Registros eliminados correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se seleccionaron registros.']);
+             echo json_encode(array('status' => 'error', 'message' => 'Error al eliminar registros.'));
         }
+    } else {
+        echo json_encode(array('status' => 'error', 'message' => 'No se seleccionaron registros.'));
+    }
     }
 
     public function ajaxListar() {

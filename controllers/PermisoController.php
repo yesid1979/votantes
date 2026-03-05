@@ -33,9 +33,9 @@ class PermisoController {
         
         if($id_tipo > 0) {
             $permisos = $this->model->getPermisosByTipo($id_tipo);
-            echo json_encode(['status' => 'success', 'data' => $permisos]);
+            echo json_encode(array('status' => 'success', 'data' => $permisos));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Tipo de usuario no válido']);
+            echo json_encode(array('status' => 'error', 'message' => 'Tipo de usuario no válido'));
         }
     }
 
@@ -47,13 +47,13 @@ class PermisoController {
         if($id_usuario > 0) {
             $permisos = $this->model->getPermisosByUsuario($id_usuario);
             $tienePersonalizados = $this->model->tienePermisosPersonalizados($id_usuario);
-            echo json_encode([
+            echo json_encode(array(
                 'status' => 'success', 
                 'data' => $permisos,
                 'personalizado' => $tienePersonalizados
-            ]);
+            ));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Usuario no válido']);
+            echo json_encode(array('status' => 'error', 'message' => 'Usuario no válido'));
         }
     }
 
@@ -66,12 +66,12 @@ class PermisoController {
         
         if($id_tipo > 0) {
             if($this->model->guardarPermisosRol($id_tipo, $permisos)) {
-                echo json_encode(['status' => 'success', 'message' => 'Permisos del rol guardados correctamente.']);
+                echo json_encode(array('status' => 'success', 'message' => 'Permisos del rol guardados correctamente.'));
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Error al guardar permisos.']);
+                echo json_encode(array('status' => 'error', 'message' => 'Error al guardar permisos.'));
             }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Tipo de usuario no válido.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Tipo de usuario no válido.'));
         }
     }
 
@@ -84,12 +84,12 @@ class PermisoController {
         
         if($id_usuario > 0) {
             if($this->model->guardarPermisosUsuario($id_usuario, $permisos)) {
-                echo json_encode(['status' => 'success', 'message' => 'Permisos del usuario guardados correctamente.']);
+                echo json_encode(array('status' => 'success', 'message' => 'Permisos del usuario guardados correctamente.'));
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Error al guardar permisos.']);
+                echo json_encode(array('status' => 'error', 'message' => 'Error al guardar permisos.'));
             }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Usuario no válido.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Usuario no válido.'));
         }
     }
 
@@ -101,12 +101,12 @@ class PermisoController {
         
         if($id_usuario > 0) {
             if($this->model->eliminarPermisosUsuario($id_usuario)) {
-                echo json_encode(['status' => 'success', 'message' => 'Permisos restaurados a los del rol.']);
+                echo json_encode(array('status' => 'success', 'message' => 'Permisos restaurados a los del rol.'));
             } else {
-                echo json_encode(['status' => 'error', 'message' => 'Error al restaurar permisos.']);
+                echo json_encode(array('status' => 'error', 'message' => 'Error al restaurar permisos.'));
             }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Usuario no válido.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Usuario no válido.'));
         }
     }
 }

@@ -82,9 +82,9 @@ class AjaxGeoController {
         
         $info = $this->model->getPuestoInfo($dpto, $muni, $zona, $puesto);
         if ($info) {
-            echo json_encode(['nom_puesto' => $info['nom_puesto'], 'dir_puesto' => $info['dir_zona']]);
+            echo json_encode(array('nom_puesto' => $info['nom_puesto'], 'dir_puesto' => $info['dir_zona']));
         } else {
-            echo json_encode(['nom_puesto' => '', 'dir_puesto' => '']);
+            echo json_encode(array('nom_puesto' => '', 'dir_puesto' => ''));
         }
     }
 
@@ -93,9 +93,9 @@ class AjaxGeoController {
         $puesto = isset($_POST['puesto']) ? $_POST['puesto'] : '';
         $info = $this->model->getReverseGeo($zona, $puesto);
         if ($info) {
-            echo json_encode(['status' => 'success', 'dpto' => $info['dpto_zona'], 'muni' => $info['mun_zona']]);
+            echo json_encode(array('status' => 'success', 'dpto' => $info['dpto_zona'], 'muni' => $info['mun_zona']));
         } else {
-            echo json_encode(['status' => 'error']);
+            echo json_encode(array('status' => 'error'));
         }
     }
 }

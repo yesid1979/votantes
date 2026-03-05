@@ -62,13 +62,13 @@
         </div>
     <?php else:
         // Agrupar por zona-puesto
-        $grupos = [];
+        $grupos = array();
         $totalGeneral = 0;
         foreach($detalles as $row) {
             $key = $row['dpto'] . ' / ' . $row['muni'] . ' / Zona ' . $row['zona'] . ' / Puesto ' . $row['puesto'];
             if(!isset($grupos[$key])) {
-                $grupos[$key] = [
-                    'nom_puesto' => $row['nom_puesto'],
+                $grupos[$key] = array(
+                    'nom_puesto' => $row['nom_puesto'),
                     'zona'       => $row['zona'],
                     'puesto'     => $row['puesto'],
                     'muni'       => $row['muni'],
@@ -77,7 +77,7 @@
                     'subtotal'   => 0
                 ];
             }
-            $grupos[$key]['mesas'][] = ['mesa' => $row['mesa'], 'votos' => $row['votos']];
+            $grupos[$key]['mesas'][] = array('mesa' => $row['mesa'), 'votos' => $row['votos']];
             $grupos[$key]['subtotal'] += intval($row['votos']);
             $totalGeneral += intval($row['votos']);
         }

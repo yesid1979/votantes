@@ -25,9 +25,9 @@ class CandidatoController {
 
     public function store() {
         if ($this->model->registrarCandidato($_POST, $_FILES)) {
-            echo json_encode(['status' => 'success', 'message' => 'Candidato registrado correctamente.']);
+            echo json_encode(array('status' => 'success', 'message' => 'Candidato registrado correctamente.'));
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Error al registrar.']);
+            echo json_encode(array('status' => 'error', 'message' => 'Error al registrar.'));
         }
     }
 
@@ -46,33 +46,33 @@ class CandidatoController {
 
     public function update() {
         if ($this->model->actualizarCandidato($_POST, $_FILES)) {
-             echo json_encode(['status' => 'success', 'message' => 'Candidato actualizado correctamente.']);
+             echo json_encode(array('status' => 'success', 'message' => 'Candidato actualizado correctamente.'));
         } else {
-             echo json_encode(['status' => 'error', 'message' => 'Error al actualizar.']);
+             echo json_encode(array('status' => 'error', 'message' => 'Error al actualizar.'));
         }
     }
 
     public function delete() {
         if(isset($_POST['id'])) {
              if ($this->model->bajaCandidato($_POST['id'])) {
-                 echo json_encode(['status' => 'success', 'message' => 'Registros eliminados correctamente.']);
+                 echo json_encode(array('status' => 'success', 'message' => 'Registros eliminados correctamente.'));
              } else {
-                 echo json_encode(['status' => 'error', 'message' => 'Error al eliminar registros.']);
+                 echo json_encode(array('status' => 'error', 'message' => 'Error al eliminar registros.'));
              }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se seleccionaron registros.']);
+            echo json_encode(array('status' => 'error', 'message' => 'No se seleccionaron registros.'));
         }
     }
 
     public function toggleEstado() {
         if(isset($_POST['id'])) {
              if ($this->model->toggleEstadoCandidato($_POST['id'])) {
-                 echo json_encode(['status' => 'success', 'message' => 'Estado de los candidatos actualizados correctamente.']);
+                 echo json_encode(array('status' => 'success', 'message' => 'Estado de los candidatos actualizados correctamente.'));
              } else {
-                 echo json_encode(['status' => 'error', 'message' => 'Error al cambiar estado de los candidatos.']);
+                 echo json_encode(array('status' => 'error', 'message' => 'Error al cambiar estado de los candidatos.'));
              }
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'No se seleccionaron registros.']);
+            echo json_encode(array('status' => 'error', 'message' => 'No se seleccionaron registros.'));
         }
     }
 

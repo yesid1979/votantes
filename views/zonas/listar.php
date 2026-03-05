@@ -75,7 +75,7 @@ $(document).ready(function() {
     });
 
     $('#btn_delete').on('click', function() {
-        var id = [];
+        var id = array();
         $('.delete_student:checked').each(function(i) {
             id[i] = $(this).val();		
         });
