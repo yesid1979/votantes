@@ -1,12 +1,14 @@
 <?php
+// Reporte de Detalles de Votos - Safe Version for PHP 5.3.8
 date_default_timezone_set('America/Bogota');
+ini_set('memory_limit', '256M');
+
 session_start();
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: ../index.php");
     exit;
 }
 
-// Restricción de acceso dinámica
 require_once('../funcs/permisos_helper.php');
 if (!tienePermiso($_SESSION['tipo_usuario'], 'Resultados', 'ver')) {
     header("Location: ../index.php?url=dashboard/index");
@@ -23,28 +25,30 @@ $dpto         = isset($_GET['dpto'])         ? $_GET['dpto']         : '';
 $muni         = isset($_GET['muni'])         ? $_GET['muni']         : '';
 
 if (empty($id_candidato)) {
-    die('Parámetros incompletos.');
+    die('Parametros incompletos.');
 }
 
-// ── Nombre del candidato ──────────────────────────────────────────────────────
 $conexionObj = new Conexion();
 $db = $conexionObj->get_conexion();
 
 $nomCandidato = $id_candidato;
-if ($id_candidato === 'EN_BLANCO')   { $nomCandidato = 'Votos en Blanco'; }
-elseif ($id_candidato === 'NULOS')   { $nomCandidato = 'Votos Nulos'; }
-elseif ($id_candidato === 'NO_MARCADOS') { $nomCandidato = 'Tarjetones No Marcados'; }
-else {
+if ($id_candidato == 'EN_BLANCO') { 
+    $nomCandidato = 'Votos en Blanco'; 
+} elseif ($id_candidato == 'NULOS') { 
+    $nomCandidato = 'Votos Nulos'; 
+} elseif ($id_candidato == 'NO_MARCADOS') { 
+    $nomCandidato = 'Tarjetones No Marcados'; 
+} else {
     $sc = $db->prepare("SELECT nom_candidato, nom_partido FROM candidatos WHERE id_candidato = :id LIMIT 1");
     $sc->bindValue(':id', $id_candidato);
     $sc->execute();
     $cRow = $sc->fetch(PDO::FETCH_ASSOC);
-    if ($cRow) $nomCandidato = $cRow['nom_candidato'] . ' (' . $cRow['nom_partido'] . ')';
+    if ($cRow) {
+        $nomCandidato = $cRow['nom_candidato'] . ' (' . $cRow['nom_partido'] . ')';
+    }
 }
 
-// ── Consulta detallada ────────────────────────────────────────────────────────
-$sql = "SELECT r.zona, r.puesto, r.mesa, r.votos, r.dpto, r.muni,
-               z.nom_puesto
+$sql = "SELECT r.zona, r.puesto, r.mesa, r.votos, r.dpto, r.muni, z.nom_puesto
         FROM registro_votos r
         LEFT JOIN zonas z ON z.num_zona  = r.zona
                          AND z.pues_zona = r.puesto
@@ -53,162 +57,69 @@ $sql = "SELECT r.zona, r.puesto, r.mesa, r.votos, r.dpto, r.muni,
         WHERE r.id_candidato = :id_candidato AND r.aspirante = :aspirante";
 
 $params = array(':id_candidato' => $id_candidato, ':aspirante' => $aspirante);
-if (!empty($dpto)) { $sql .= " AND r.dpto = :dpto"; $params[':dpto'] = $dpto; }
-if (!empty($muni)) { $sql .= " AND r.muni = :muni"; $params[':muni'] = $muni; }
+if (!empty($dpto)) { 
+    $sql .= " AND r.dpto = :dpto"; 
+    $params[':dpto'] = $dpto; 
+}
+if (!empty($muni)) { 
+    $sql .= " AND r.muni = :muni"; 
+    $params[':muni'] = $muni; 
+}
 $sql .= " ORDER BY r.dpto ASC, r.muni ASC, r.zona ASC, r.puesto ASC, r.mesa ASC";
 
 $stmt = $db->prepare($sql);
-foreach ($params as $k => $v) $stmt->bindValue($k, $v);
+foreach ($params as $k => $v) {
+    $stmt->bindValue($k, $v);
+}
 $stmt->execute();
 $datos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// ── PHPExcel ──────────────────────────────────────────────────────────────────
 $titulo = "Detalle de Votos - " . $nomCandidato;
 
 $excel = new PHPExcel();
-$excel->getProperties()
-      ->setCreator("Sistema de Votantes")
-      ->setTitle($titulo);
-
-$sheet = $excel->getActiveSheet();
+$excel->getProperties()->setCreator("Sistema Votantes")->setTitle($titulo);
+$sheet = $excel->setActiveSheetIndex(0);
 $sheet->setTitle("Detalle por Mesa");
 
-$colorHeader   = '1a3c5e';
-$colorSubtitle = '2e6da4';
-$colorImpar    = 'EDF2F7';
-$colorPar      = 'FFFFFF';
-$colorGroup    = 'D6EAF8';
-
-// ── Fila 1: Título ────────────────────────────────────────────────────────────
-$sheet->mergeCells('A1:G1');
 $sheet->setCellValue('A1', $titulo);
-$sheet->getStyle('A1')->applyFromArray(array(
-    'font'      => array('bold' => true, 'size' => 14, 'color' => array('rgb' => 'FFFFFF')),
-    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
-    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER),
-));
-$sheet->getRowDimension(1)->setRowHeight(30);
+$sheet->mergeCells('A1:G1');
+$sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14);
 
-// ── Fila 2: Info filtros ──────────────────────────────────────────────────────
-$infoFiltros = "Aspirante: $aspirante";
-if ($dpto) $infoFiltros .= " | Departamento: $dpto";
-if ($muni) $infoFiltros .= " | Municipio: $muni";
-$infoFiltros .= "  |  Generado: " . date('d/m/Y H:i:s');
-
+$sheet->setCellValue('A2', "Aspirante: $aspirante | Generado: " . date('d/m/Y H:i'));
 $sheet->mergeCells('A2:G2');
-$sheet->setCellValue('A2', $infoFiltros);
-$sheet->getStyle('A2')->applyFromArray(array(
-    'font'      => array('italic' => true, 'size' => 10, 'color' => array('rgb' => 'FFFFFF')),
-    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorSubtitle)),
-    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-));
 
-// ── Fila 3: Encabezados ───────────────────────────────────────────────────────
 $headers = array('Departamento', 'Municipio', 'Zona', 'Puesto', 'Nombre Puesto', 'Mesa', 'Votos');
-$cols    = array('A', 'B', 'C', 'D', 'E', 'F', 'G');
-foreach ($headers as $i => $h) {
-    $sheet->setCellValue($cols[$i] . '3', $h);
+$col = 'A';
+foreach ($headers as $h) {
+    $sheet->setCellValue($col . '3', $h);
+    $sheet->getStyle($col . '3')->getFont()->setBold(true);
+    $col++;
 }
-$sheet->getStyle('A3:G3')->applyFromArray(array(
-    'font'      => array('bold' => true, 'color' => array('rgb' => 'FFFFFF')),
-    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
-    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER),
-    'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN,
-                                     'color' => array('rgb' => 'FFFFFF'))),
-));
-$sheet->getRowDimension(3)->setRowHeight(22);
 
-// ── Datos + subtotales por grupo ──────────────────────────────────────────────
-$row         = 4;
+$row = 4;
 $totalGeneral = 0;
-$prevGroup   = null;
-$groupVotos  = 0;
-$groupStart  = 4;
-
-// Para insertar subtotales necesitamos recorrer por grupos
-$grupos = array();
 foreach ($datos as $d) {
-    $gKey = $d['dpto'] . '|' . $d['muni'] . '|' . $d['zona'] . '|' . $d['puesto'];
-    if (!isset($grupos[$gKey])) {
-        $grupos[$gKey] = array(
-            'dpto'      => $d['dpto'],
-            'muni'      => $d['muni'],
-            'zona'      => $d['zona'],
-            'puesto'    => $d['puesto'],
-            'nom_puesto'=> $d['nom_puesto'],
-            'mesas'     => array(),
-            'subtotal'  => 0,
-        );
-    }
-    $grupos[$gKey]['mesas'][] = array('mesa' => $d['mesa'], 'votos' => intval($d['votos']));
-    $grupos[$gKey]['subtotal'] += intval($d['votos']);
-    $totalGeneral += intval($d['votos']);
-}
+    $votos = intval($d['votos']);
+    $totalGeneral += $votos;
 
-$mesaIdx = 0;
-foreach ($grupos as $g) {
-    foreach ($g['mesas'] as $m) {
-        $fillColor = ($mesaIdx % 2 === 0) ? $colorImpar : $colorPar;
-        $sheet->setCellValue("A$row", $g['dpto']);
-        $sheet->setCellValue("B$row", $g['muni']);
-        $sheet->setCellValue("C$row", $g['zona']);
-        $sheet->setCellValue("D$row", $g['puesto']);
-        $sheet->setCellValue("E$row", $g['nom_puesto']);
-        $sheet->setCellValue("F$row", str_pad($m['mesa'], 2, '0', STR_PAD_LEFT));
-        $sheet->setCellValue("G$row", $m['votos']);
-        $sheet->getStyle("A$row:G$row")->applyFromArray(array(
-            'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $fillColor)),
-            'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN,
-                                             'color' => array('rgb' => 'CCCCCC'))),
-            'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-        ));
-        $sheet->getStyle("E$row")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-        $row++;
-        $mesaIdx++;
-    }
-    // Subtotal del grupo
-    $sheet->mergeCells("A$row:F$row");
-    $sheet->setCellValue("A$row", 'Subtotal  Zona ' . $g['zona'] . ' / Puesto ' . $g['puesto'] . ' — ' . $g['nom_puesto']);
-    $sheet->setCellValue("G$row", $g['subtotal']);
-    $sheet->getStyle("A$row:G$row")->applyFromArray(array(
-        'font'      => array('bold' => true),
-        'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorGroup)),
-        'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM,
-                                         'color' => array('rgb' => '2e6da4'))),
-        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-    ));
-    $sheet->getStyle("A$row")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+    $sheet->setCellValue("A" . $row, $d['dpto']);
+    $sheet->setCellValue("B" . $row, $d['muni']);
+    $sheet->setCellValue("C" . $row, $d['zona']);
+    $sheet->setCellValue("D" . $row, $d['puesto']);
+    $sheet->setCellValue("E" . $row, $d['nom_puesto']);
+    $sheet->setCellValue("F" . $row, $d['mesa']);
+    $sheet->setCellValue("G" . $row, $votos);
     $row++;
 }
 
-// ── Fila Total General ────────────────────────────────────────────────────────
+$sheet->setCellValue("A" . $row, "TOTAL GENERAL");
 $sheet->mergeCells("A$row:F$row");
-$sheet->setCellValue("A$row", 'TOTAL GENERAL');
-$sheet->setCellValue("G$row", $totalGeneral);
-$sheet->getStyle("A$row:G$row")->applyFromArray(array(
-    'font'      => array('bold' => true, 'size' => 12, 'color' => array('rgb' => 'FFFFFF')),
-    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
-    'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM)),
-    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
-));
+$sheet->setCellValue("G" . $row, $totalGeneral);
+$sheet->getStyle("A$row:G$row")->getFont()->setBold(true);
 
-// ── Ancho de columnas ─────────────────────────────────────────────────────────
-$sheet->getColumnDimension('A')->setWidth(18);
-$sheet->getColumnDimension('B')->setWidth(18);
-$sheet->getColumnDimension('C')->setWidth(10);
-$sheet->getColumnDimension('D')->setWidth(10);
-$sheet->getColumnDimension('E')->setWidth(35);
-$sheet->getColumnDimension('F')->setWidth(10);
-$sheet->getColumnDimension('G')->setWidth(12);
+$safe_candidato = preg_replace('/[^A-Za-z0-9]/', '_', $id_candidato);
+$filename = 'Detalle_' . $safe_candidato . '_' . date('Ymd_Hi') . '.xls';
 
-// ── Inmovilizar encabezados ───────────────────────────────────────────────────
-$sheet->freezePaneByColumnAndRow(0, 4);
-
-// ── Enviar al navegador ───────────────────────────────────────────────────────
-$safeId   = preg_replace('/[^A-Za-z0-9_]/', '_', $id_candidato);
-$filename = 'Detalle_Votos_' . $safeId . '_' . date('Ymd_His') . '.xls';
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment; filename="' . $filename . '"');
 header('Cache-Control: max-age=0');
