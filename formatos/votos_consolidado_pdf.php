@@ -42,7 +42,7 @@ $totalValidos = 0;
 foreach ($datos as $d) {
     $v = intval($d['total_votos']);
     $totalGeneral += $v;
-    if (!in_array($d['id_candidato'], ['NULOS', 'NO_MARCADOS'])) $totalValidos += $v;
+    if (!in_array($d['id_candidato'], array('NULOS', 'NO_MARCADOS'))) $totalValidos += $v;
 }
 
 $titulo = "Resultados Consolidados — " . strtoupper($aspirante);
@@ -173,7 +173,7 @@ if ($muni) $subtitulo .= ($subtitulo ? ' | ' : '') . "Municipio: $muni";
         $votos   = intval($d['total_votos']);
         $pctTot  = $totalGeneral > 0 ? round($votos / $totalGeneral * 100, 1) : 0;
         $pctVal  = $totalValidos > 0 ? round($votos / $totalValidos * 100, 1) : 0;
-        $isSpec  = in_array($d['id_candidato'], ['EN_BLANCO','NULOS','NO_MARCADOS']);
+        $isSpec  = in_array($d['id_candidato'], array('EN_BLANCO','NULOS','NO_MARCADOS'));
         $barClass = $isSpec ? 'special' : ($idx === 0 ? 'winner' : '');
         $pctMax   = $totalGeneral > 0 ? ($votos / $totalGeneral * 100) : 0;
     ?>

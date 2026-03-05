@@ -52,7 +52,7 @@ $totalValidos = 0;
 foreach ($datos as $d) {
     $v = intval($d['total_votos']);
     $totalGeneral += $v;
-    if (!in_array($d['id_candidato'], ['NULOS', 'NO_MARCADOS'])) $totalValidos += $v;
+    if (!in_array($d['id_candidato'], array('NULOS', 'NO_MARCADOS'))) $totalValidos += $v;
 }
 
 // ── PHPExcel ──────────────────────────────────────────────────────────────────
@@ -75,33 +75,33 @@ $colorWinner   = 'FFF3CD';
 // ── Fila 1: Título principal ──────────────────────────────────────────────────
 $sheet->mergeCells('A1:F1');
 $sheet->setCellValue('A1', $titulo);
-$sheet->getStyle('A1')->applyFromArray([
-    'font'      => ['bold' => true, 'size' => 14, 'color' => ['rgb' => 'FFFFFF']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorHeader]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER],
-]);
+$sheet->getStyle('A1')->applyFromArray(array(
+    'font'      => array('bold' => true, 'size' => 14, 'color' => array('rgb' => 'FFFFFF')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER),
+));
 $sheet->getRowDimension(1)->setRowHeight(30);
 
 // ── Fila 2: Fecha de generación ───────────────────────────────────────────────
 $sheet->mergeCells('A2:F2');
 $sheet->setCellValue('A2', 'Generado el: ' . date('d/m/Y H:i:s'));
-$sheet->getStyle('A2')->applyFromArray([
-    'font'      => ['italic' => true, 'size' => 10, 'color' => ['rgb' => 'FFFFFF']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorSubtitle]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER],
-]);
+$sheet->getStyle('A2')->applyFromArray(array(
+    'font'      => array('italic' => true, 'size' => 10, 'color' => array('rgb' => 'FFFFFF')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorSubtitle)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+));
 
 // ── Fila 3: Totales ───────────────────────────────────────────────────────────
 $sheet->mergeCells('A3:C3');
 $sheet->setCellValue('A3', 'Total General: ' . number_format($totalGeneral));
 $sheet->mergeCells('D3:F3');
 $sheet->setCellValue('D3', 'Total Válidos: ' . number_format($totalValidos));
-$sheet->getStyle('A3:F3')->applyFromArray([
-    'font'      => ['bold' => true, 'size' => 11, 'color' => ['rgb' => '155724']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorTotal]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER],
-]);
+$sheet->getStyle('A3:F3')->applyFromArray(array(
+    'font'      => array('bold' => true, 'size' => 11, 'color' => array('rgb' => '155724')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorTotal)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+));
 
 // ── Fila 4: Encabezados ───────────────────────────────────────────────────────
 $headers = ['#', 'Candidato', 'Partido', 'Votos', '% del Total', '% Válidos'];
@@ -109,14 +109,14 @@ $cols    = ['A', 'B', 'C', 'D', 'E', 'F'];
 foreach ($headers as $i => $h) {
     $sheet->setCellValue($cols[$i] . '4', $h);
 }
-$sheet->getStyle('A4:F4')->applyFromArray([
-    'font'      => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorHeader]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER],
-    'borders'   => ['allborders' => ['style' => PHPExcel_Style_Border::BORDER_THIN,
-                                     'color' => ['rgb' => 'FFFFFF']]],
-]);
+$sheet->getStyle('A4:F4')->applyFromArray(array(
+    'font'      => array('bold' => true, 'color' => array('rgb' => 'FFFFFF')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER),
+    'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN,
+                                     'color' => array('rgb' => 'FFFFFF'))),
+));
 $sheet->getRowDimension(4)->setRowHeight(22);
 
 // ── Filas de datos ────────────────────────────────────────────────────────────
@@ -139,12 +139,12 @@ foreach ($datos as $idx => $d) {
     $sheet->setCellValue("F$row", $pctVal . '%');
 
     $fillColor = ($idx === 0) ? $colorWinner : (($idx % 2 === 0) ? $colorImpar : $colorPar);
-    $sheet->getStyle("A$row:F$row")->applyFromArray([
-        'fill'    => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $fillColor]],
-        'borders' => ['allborders' => ['style' => PHPExcel_Style_Border::BORDER_THIN,
-                                       'color' => ['rgb' => 'CCCCCC']]],
-        'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER],
-    ]);
+    $sheet->getStyle("A$row:F$row")->applyFromArray(array(
+        'fill'    => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $fillColor)),
+        'borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN,
+                                       'color' => array('rgb' => 'CCCCCC'))),
+        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+    ));
     // Candidato y partido alineados a la izquierda
     $sheet->getStyle("B$row:C$row")->getAlignment()
           ->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);

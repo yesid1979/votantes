@@ -64,16 +64,16 @@ foreach ($filas as $row) {
     $gKey = $row['dpto'] . '|' . $row['muni'] . '|' . $row['zona'] . '|' . $row['puesto'];
     if (!isset($grupos[$gKey])) {
         $grupos[$gKey] = array(
-            'dpto'       => $row['dpto'),
+            'dpto'       => $row['dpto'],
             'muni'       => $row['muni'],
             'zona'       => $row['zona'],
             'puesto'     => $row['puesto'],
             'nom_puesto' => $row['nom_puesto'],
-            'mesas'      => [],
+            'mesas'      => array(),
             'subtotal'   => 0,
-        ];
+        );
     }
-    $grupos[$gKey]['mesas'][] = array('mesa' => $row['mesa'), 'votos' => intval($row['votos'])];
+    $grupos[$gKey]['mesas'][] = array('mesa' => $row['mesa'], 'votos' => intval($row['votos']));
     $grupos[$gKey]['subtotal'] += intval($row['votos']);
     $totalGeneral += intval($row['votos']);
 }

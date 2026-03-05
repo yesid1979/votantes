@@ -29,12 +29,12 @@
                 </div>
                 <div class="col-auto d-flex gap-2 flex-wrap">
                     <?php
-                        $qsDetalle = http_build_query([
+                        $qsDetalle = http_build_query(array(
                             'id_candidato' => $id_candidato,
                             'aspirante'    => $aspirante,
                             'dpto'         => $dpto,
                             'muni'         => $muni,
-                        ]);
+                        ));
                     ?>
                     <a href="formatos/votos_detallado_pdf.php?<?php echo $qsDetalle; ?>" target="_blank"
                        class="btn btn-outline-danger btn-sm">
@@ -68,16 +68,16 @@
             $key = $row['dpto'] . ' / ' . $row['muni'] . ' / Zona ' . $row['zona'] . ' / Puesto ' . $row['puesto'];
             if(!isset($grupos[$key])) {
                 $grupos[$key] = array(
-                    'nom_puesto' => $row['nom_puesto'),
+                    'nom_puesto' => $row['nom_puesto'],
                     'zona'       => $row['zona'],
                     'puesto'     => $row['puesto'],
                     'muni'       => $row['muni'],
                     'dpto'       => $row['dpto'],
-                    'mesas'      => [],
+                    'mesas'      => array(),
                     'subtotal'   => 0
-                ];
+                );
             }
-            $grupos[$key]['mesas'][] = array('mesa' => $row['mesa'), 'votos' => $row['votos']];
+            $grupos[$key]['mesas'][] = array('mesa' => $row['mesa'], 'votos' => $row['votos']);
             $grupos[$key]['subtotal'] += intval($row['votos']);
             $totalGeneral += intval($row['votos']);
         }

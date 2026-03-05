@@ -82,12 +82,12 @@ $colorGroup    = 'D6EAF8';
 // ── Fila 1: Título ────────────────────────────────────────────────────────────
 $sheet->mergeCells('A1:G1');
 $sheet->setCellValue('A1', $titulo);
-$sheet->getStyle('A1')->applyFromArray([
-    'font'      => ['bold' => true, 'size' => 14, 'color' => ['rgb' => 'FFFFFF']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorHeader]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER],
-]);
+$sheet->getStyle('A1')->applyFromArray(array(
+    'font'      => array('bold' => true, 'size' => 14, 'color' => array('rgb' => 'FFFFFF')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER),
+));
 $sheet->getRowDimension(1)->setRowHeight(30);
 
 // ── Fila 2: Info filtros ──────────────────────────────────────────────────────
@@ -98,11 +98,11 @@ $infoFiltros .= "  |  Generado: " . date('d/m/Y H:i:s');
 
 $sheet->mergeCells('A2:G2');
 $sheet->setCellValue('A2', $infoFiltros);
-$sheet->getStyle('A2')->applyFromArray([
-    'font'      => ['italic' => true, 'size' => 10, 'color' => ['rgb' => 'FFFFFF']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorSubtitle]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER],
-]);
+$sheet->getStyle('A2')->applyFromArray(array(
+    'font'      => array('italic' => true, 'size' => 10, 'color' => array('rgb' => 'FFFFFF')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorSubtitle)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+));
 
 // ── Fila 3: Encabezados ───────────────────────────────────────────────────────
 $headers = ['Departamento', 'Municipio', 'Zona', 'Puesto', 'Nombre Puesto', 'Mesa', 'Votos'];
@@ -110,14 +110,14 @@ $cols    = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 foreach ($headers as $i => $h) {
     $sheet->setCellValue($cols[$i] . '3', $h);
 }
-$sheet->getStyle('A3:G3')->applyFromArray([
-    'font'      => ['bold' => true, 'color' => ['rgb' => 'FFFFFF']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorHeader]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER],
-    'borders'   => ['allborders' => ['style' => PHPExcel_Style_Border::BORDER_THIN,
-                                     'color' => ['rgb' => 'FFFFFF']]],
-]);
+$sheet->getStyle('A3:G3')->applyFromArray(array(
+    'font'      => array('bold' => true, 'color' => array('rgb' => 'FFFFFF')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER),
+    'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN,
+                                     'color' => array('rgb' => 'FFFFFF'))),
+));
 $sheet->getRowDimension(3)->setRowHeight(22);
 
 // ── Datos + subtotales por grupo ──────────────────────────────────────────────
@@ -133,16 +133,16 @@ foreach ($datos as $d) {
     $gKey = $d['dpto'] . '|' . $d['muni'] . '|' . $d['zona'] . '|' . $d['puesto'];
     if (!isset($grupos[$gKey])) {
         $grupos[$gKey] = array(
-            'dpto'      => $d['dpto'),
+            'dpto'      => $d['dpto'],
             'muni'      => $d['muni'],
             'zona'      => $d['zona'],
             'puesto'    => $d['puesto'],
             'nom_puesto'=> $d['nom_puesto'],
-            'mesas'     => [],
+            'mesas'     => array(),
             'subtotal'  => 0,
-        ];
+        );
     }
-    $grupos[$gKey]['mesas'][] = array('mesa' => $d['mesa'), 'votos' => intval($d['votos'])];
+    $grupos[$gKey]['mesas'][] = array('mesa' => $d['mesa'], 'votos' => intval($d['votos']));
     $grupos[$gKey]['subtotal'] += intval($d['votos']);
     $totalGeneral += intval($d['votos']);
 }
@@ -158,12 +158,12 @@ foreach ($grupos as $g) {
         $sheet->setCellValue("E$row", $g['nom_puesto']);
         $sheet->setCellValue("F$row", str_pad($m['mesa'], 2, '0', STR_PAD_LEFT));
         $sheet->setCellValue("G$row", $m['votos']);
-        $sheet->getStyle("A$row:G$row")->applyFromArray([
-            'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $fillColor]],
-            'borders'   => ['allborders' => ['style' => PHPExcel_Style_Border::BORDER_THIN,
-                                             'color' => ['rgb' => 'CCCCCC']]],
-            'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER],
-        ]);
+        $sheet->getStyle("A$row:G$row")->applyFromArray(array(
+            'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $fillColor)),
+            'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN,
+                                             'color' => array('rgb' => 'CCCCCC'))),
+            'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+        ));
         $sheet->getStyle("E$row")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
         $row++;
         $mesaIdx++;
@@ -172,13 +172,13 @@ foreach ($grupos as $g) {
     $sheet->mergeCells("A$row:F$row");
     $sheet->setCellValue("A$row", 'Subtotal  Zona ' . $g['zona'] . ' / Puesto ' . $g['puesto'] . ' — ' . $g['nom_puesto']);
     $sheet->setCellValue("G$row", $g['subtotal']);
-    $sheet->getStyle("A$row:G$row")->applyFromArray([
-        'font'      => ['bold' => true],
-        'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorGroup]],
-        'borders'   => ['allborders' => ['style' => PHPExcel_Style_Border::BORDER_MEDIUM,
-                                         'color' => ['rgb' => '2e6da4']]],
-        'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER],
-    ]);
+    $sheet->getStyle("A$row:G$row")->applyFromArray(array(
+        'font'      => array('bold' => true),
+        'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorGroup)),
+        'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM,
+                                         'color' => array('rgb' => '2e6da4'))),
+        'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+    ));
     $sheet->getStyle("A$row")->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
     $row++;
 }
@@ -187,12 +187,12 @@ foreach ($grupos as $g) {
 $sheet->mergeCells("A$row:F$row");
 $sheet->setCellValue("A$row", 'TOTAL GENERAL');
 $sheet->setCellValue("G$row", $totalGeneral);
-$sheet->getStyle("A$row:G$row")->applyFromArray([
-    'font'      => ['bold' => true, 'size' => 12, 'color' => ['rgb' => 'FFFFFF']],
-    'fill'      => ['type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => ['rgb' => $colorHeader]],
-    'borders'   => ['allborders' => ['style' => PHPExcel_Style_Border::BORDER_MEDIUM]],
-    'alignment' => ['horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER],
-]);
+$sheet->getStyle("A$row:G$row")->applyFromArray(array(
+    'font'      => array('bold' => true, 'size' => 12, 'color' => array('rgb' => 'FFFFFF')),
+    'fill'      => array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'color' => array('rgb' => $colorHeader)),
+    'borders'   => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_MEDIUM)),
+    'alignment' => array('horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER),
+));
 
 // ── Ancho de columnas ─────────────────────────────────────────────────────────
 $sheet->getColumnDimension('A')->setWidth(18);

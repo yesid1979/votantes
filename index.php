@@ -58,7 +58,7 @@ if (file_exists('controllers/' . $controllerName . '.php')) {
     if (method_exists($controller, $methodName)) {
         // Pasar parámetros extra si existen
         $params = array_slice($urlParts, 2);
-        call_user_func_array([$controller, $methodName], $params);
+        call_user_func_array(array($controller, $methodName), $params);
     } else {
         // Método no encontrado, mostrar 404 o redirigir
         echo "Error 404: Método no encontrado ($methodName).";
