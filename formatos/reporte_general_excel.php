@@ -1,5 +1,8 @@
 <?php
 /** Exportador Genérico para Votantes y Simpatizantes **/
+error_reporting(0);
+ini_set('display_errors', 0);
+
 require_once("../funcs/class.conexion.php");
 require_once('../libs/PHPExcel/PHPExcel.php');
 require_once('../libs/PHPExcel/PHPExcel/IOFactory.php');
