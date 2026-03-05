@@ -119,6 +119,30 @@ $tipo_usuario = $_SESSION['tipo_usuario']; // 1: Admin, 2: Digitador, 3: Lider
                 </a>
                 <?php endif; ?>
 
+                <?php 
+                $puedeVerRegistroV = tienePermiso($tipo_usuario, 'Registro v.', 'ver');
+                $puedeVerResultados = tienePermiso($tipo_usuario, 'Resultados', 'ver');
+                $puedeVerReportes = tienePermiso($tipo_usuario, 'Reportes G.', 'ver');
+                ?>
+
+                <?php if($puedeVerRegistroV): ?>
+                <a href="index.php?url=registrovoto/index" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'registrovoto') !== false && strpos($_GET['url'], 'resultados') === false) ? 'active' : ''; ?>">
+                    <i class="bi bi-box-arrow-in-right"></i> Registro de Votos
+                </a>
+                <?php endif; ?>
+
+                <?php if($puedeVerResultados): ?>
+                <a href="index.php?url=registrovoto/resultados" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'resultados') !== false) ? 'active' : ''; ?>">
+                    <i class="bi bi-bar-chart-fill"></i> Resultados en Vivo
+                </a>
+                <?php endif; ?>
+
+                <?php if($puedeVerReportes): ?>
+                <a href="index.php?url=reporte/index" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'reporte/index') !== false) ? 'active' : ''; ?>">
+                    <i class="bi bi-file-earmark-bar-graph"></i> Reportes Generales
+                </a>
+                <?php endif; ?>
+
                 <?php if($puedeVerSeguridad): ?>
                 <!-- Separador -->
                 <div class="menu-divider"></div>

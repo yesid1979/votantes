@@ -40,7 +40,9 @@ INSERT INTO `modulos` (`nombre`, `descripcion`, `icono`, `url`, `orden`, `grupo`
 ('Votantes', 'Gestión de votantes', 'bi-person-check-fill', 'votante/index', 5, NULL, 1),
 ('Líderes', 'Gestión de líderes', 'bi-person-badge', 'lider/index', 6, NULL, 1),
 ('Usuarios', 'Gestión de usuarios', 'bi-people', 'usuario/index', 7, 'seguridad', 1),
-('Auditoría', 'Registro de auditoría', 'bi-eye', 'auditoria/index', 8, 'seguridad', 1);
+('Auditoría', 'Registro de auditoría', 'bi-eye', 'auditoria/index', 8, 'seguridad', 1),
+('Registro v.', 'Ingreso de votos', 'bi-box-arrow-in-right', 'registrovoto/index', 9, NULL, 1),
+('Resultados', 'Resultados en vivo', 'bi-bar-chart-fill', 'registrovoto/resultados', 10, NULL, 1);
 
 -- Obtener IDs de módulos (asumiendo que se insertaron en orden)
 SET @mod_dashboard = 1;
@@ -61,7 +63,9 @@ INSERT INTO `permisos` (`id_tipo`, `id_modulo`, `puede_ver`, `puede_crear`, `pue
 (1, @mod_votantes, 1, 1, 1, 1),
 (1, @mod_lideres, 1, 1, 1, 1),
 (1, @mod_usuarios, 1, 1, 1, 1),
-(1, @mod_auditoria, 1, 1, 1, 1);
+(1, @mod_auditoria, 1, 1, 1, 1),
+(1, 9, 1, 1, 1, 1),
+(1, 10, 1, 1, 1, 1);
 
 -- Permisos para Digitador (id_tipo = 2) - Todo menos Usuarios y Auditoría
 INSERT INTO `permisos` (`id_tipo`, `id_modulo`, `puede_ver`, `puede_crear`, `puede_editar`, `puede_eliminar`) VALUES
@@ -72,7 +76,9 @@ INSERT INTO `permisos` (`id_tipo`, `id_modulo`, `puede_ver`, `puede_crear`, `pue
 (2, @mod_votantes, 1, 1, 1, 1),
 (2, @mod_lideres, 1, 1, 1, 1),
 (2, @mod_usuarios, 0, 0, 0, 0),
-(2, @mod_auditoria, 0, 0, 0, 0);
+(2, @mod_auditoria, 0, 0, 0, 0),
+(2, 9, 1, 1, 1, 1),
+(2, 10, 1, 1, 1, 1);
 
 -- Permisos para Líder (id_tipo = 3) - Solo Simpatizantes y Votantes
 INSERT INTO `permisos` (`id_tipo`, `id_modulo`, `puede_ver`, `puede_crear`, `puede_editar`, `puede_eliminar`) VALUES

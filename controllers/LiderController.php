@@ -108,6 +108,17 @@ class LiderController {
         exit;
     }
 
+    public function ajaxGetZonas() {
+        $zonas = $this->model->getZonasForSelect();
+        echo '<option value="">Seleccione Zona</option>';
+        if ($zonas) {
+            foreach ($zonas as $zona) {
+                echo '<option value="'.$zona['num_zona'].'">'.$zona['num_zona'].'</option>';
+            }
+        }
+        exit;
+    }
+
     public function ajaxGetPuestos() {
         $num_zona = $_POST['num_zona'];
         $puestos = $this->model->getPuestosByZona($num_zona);

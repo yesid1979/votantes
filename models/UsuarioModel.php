@@ -86,8 +86,13 @@ class UsuarioModel {
     public function registrarUsuario($data) {
         $pass_hash = password_hash($data['txtPassword'], PASSWORD_DEFAULT);
         
-        $sql = "INSERT INTO usuarios (ced_usuario, nombre, usuario, password_usu, correo, id_tipo, dir_usuario, tel_usuario, cel_usuario, activacion) 
-                VALUES (:ced, :nom, :usu, :pass, :email, :tipo, :dir, :tel, :cel, :est)";
+        $dpto = isset($data['dpto_asignada']) ? $data['dpto_asignada'] : 'VALLE';
+        $muni = isset($data['muni_asignada']) ? $data['muni_asignada'] : 'CALI';
+        $zona = isset($data['zona_asignada']) ? $data['zona_asignada'] : null;
+        $puesto = isset($data['puesto_asignado']) ? $data['puesto_asignado'] : null;
+
+        $sql = "INSERT INTO usuarios (ced_usuario, nombre, usuario, password_usu, correo, id_tipo, dir_usuario, tel_usuario, cel_usuario, activacion, dpto_asignado, muni_asignado, zona_asignada, puesto_asignado) 
+                VALUES (:ced, :nom, :usu, :pass, :email, :tipo, :dir, :tel, :cel, :est, :dpto, :muni, :zon, :pue)";
         
         try {
             $stmt = $this->db->prepare($sql);
@@ -101,6 +106,10 @@ class UsuarioModel {
             $stmt->bindValue(':tel', $data['txtTel_usuario']);
             $stmt->bindValue(':cel', $data['txtCel_usuario']);
             $stmt->bindValue(':est', $data['CboEstado']);
+            $stmt->bindValue(':dpto', $dpto);
+            $stmt->bindValue(':muni', $muni);
+            $stmt->bindValue(':zon', $zona);
+            $stmt->bindValue(':pue', $puesto);
             
             if ($stmt->execute()) {
                 $id_usuario = $this->db->lastInsertId();
@@ -128,8 +137,13 @@ class UsuarioModel {
                 return true;
             }
 
+            $dpto = isset($data['dpto_asignada']) ? $data['dpto_asignada'] : 'VALLE';
+            $muni = isset($data['muni_asignada']) ? $data['muni_asignada'] : 'CALI';
+            $zona = isset($data['zona_asignada']) ? $data['zona_asignada'] : null;
+            $puesto = isset($data['puesto_asignado']) ? $data['puesto_asignado'] : null;
+
             // SI ESTAMOS ACTUALIZANDO DATOS
-            $sql = "UPDATE usuarios SET ced_usuario=:ced, nombre=:nom, usuario=:usu, correo=:email, id_tipo=:tipo, dir_usuario=:dir, tel_usuario=:tel, cel_usuario=:cel, activacion=:est";
+            $sql = "UPDATE usuarios SET ced_usuario=:ced, nombre=:nom, usuario=:usu, correo=:email, id_tipo=:tipo, dir_usuario=:dir, tel_usuario=:tel, cel_usuario=:cel, activacion=:est, dpto_asignado=:dpto, muni_asignado=:muni, zona_asignada=:zon, puesto_asignado=:pue";
             
             $hasPassword = !empty($data['txtPassword']);
             if ($hasPassword) {
@@ -148,6 +162,10 @@ class UsuarioModel {
             $stmt->bindValue(':tel', $data['txtTel_usuario']);
             $stmt->bindValue(':cel', $data['txtCel_usuario']);
             $stmt->bindValue(':est', $data['CboEstado']);
+            $stmt->bindValue(':dpto', $dpto);
+            $stmt->bindValue(':muni', $muni);
+            $stmt->bindValue(':zon', $zona);
+            $stmt->bindValue(':pue', $puesto);
             
             if ($hasPassword) {
                 $pass_hash = password_hash($data['txtPassword'], PASSWORD_DEFAULT);

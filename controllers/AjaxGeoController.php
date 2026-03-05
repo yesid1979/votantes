@@ -59,6 +59,21 @@ class AjaxGeoController {
         }
     }
 
+    public function getPuestosByMuni() {
+        $dpto = isset($_POST['departamento']) ? $_POST['departamento'] : '';
+        $muni = isset($_POST['municipio']) ? $_POST['municipio'] : '';
+        $puestos = $this->model->getPuestosByMuni($dpto, $muni);
+        $selected_puesto = isset($_POST['current']) ? $_POST['current'] : '';
+
+        echo '<option value="" '. (empty($selected_puesto) ? 'selected' : '') .'>-- Todos --</option>';
+        foreach($puestos as $p) {
+            $val = $p['num_zona']."-".$p['pues_zona'];
+            $nom = $p['nom_puesto'] . " (Zona: " . $p['num_zona'] . ")";
+            $sel = ($selected_puesto == $val) ? 'selected' : '';
+            echo '<option value="'.$val.'" '.$sel.'>'.$nom.'</option>';
+        }
+    }
+
     public function getPuestoInfo() {
         $dpto = isset($_POST['departamento']) ? $_POST['departamento'] : '';
         $muni = isset($_POST['municipio']) ? $_POST['municipio'] : '';

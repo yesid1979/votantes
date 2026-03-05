@@ -116,6 +116,47 @@
                             <label for="CboEstado">Estado *</label>
                         </div>
                     </div>
+
+                    <!-- Campos exclusivos para Coordinador de Puesto -->
+                    <div id="div_coordinador" style="display: <?php echo ($usuario['id_tipo'] == '4') ? 'block' : 'none'; ?>;" class="row g-3 mt-1">
+                        <h5 class="mt-4 mb-3 text-muted border-bottom pb-2">Asignación de Puesto (Solo Coordinadores)</h5>
+                        
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="txtDptoAsignado" name="dpto_asignada">
+                                    <option value="" disabled>Seleccione Departamento</option>
+                                    <!-- Se cargará por JS -->
+                                </select>
+                                <label for="txtDptoAsignado">Departamento Asignado</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="txtMuniAsignado" name="muni_asignada">
+                                    <option value="" disabled>Seleccione Municipio</option>
+                                </select>
+                                <label for="txtMuniAsignado">Municipio Asignado</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="CboZonaAsignada" name="zona_asignada">
+                                    <option value="">Seleccione Zona</option>
+                                </select>
+                                <label for="CboZonaAsignada">Zona Asignada</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="CboPuestoAsignado" name="puesto_asignado">
+                                    <option value="">Seleccione Puesto</option>
+                                </select>
+                                <label for="CboPuestoAsignado">Puesto Asignado</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <?php endif; ?>
 
@@ -225,6 +266,95 @@
 
 <script>
 $(document).ready(function() {
+    // Valores actuales (si es coordinador)
+    var dptoActual = "<?php echo isset($usuario['dpto_asignado']) ? $usuario['dpto_asignado'] : ''; ?>";
+    var muniActual = "<?php echo isset($usuario['muni_assigned']) ? $usuario['muni_assigned'] : (isset($usuario['muni_asignado']) ? $usuario['muni_asignado'] : ''); ?>";
+    var zonaActual = "<?php echo isset($usuario['zona_asignada']) ? $usuario['zona_asignada'] : ''; ?>";
+    var puestoActual = "<?php echo isset($usuario['puesto_asignado']) ? $usuario['puesto_asignado'] : ''; ?>";
+
+    if ($('#Cbotipo').val() == "4") {
+        cargarDptos(dptoActual, muniActual, zonaActual, puestoActual);
+    }
+
+    // Mostrar/Ocultar campos de coordinador
+    $('#Cbotipo').change(function() {
+        if ($(this).val() == "4") {
+            $('#div_coordinador').fadeIn();
+            cargarDptos('VALLE', 'CALI', '', '');
+        } else {
+            $('#div_coordinador').hide();
+            $('#txtDptoAsignado').val('');
+            $('#txtMuniAsignado').html('<option value="">Seleccione Municipio</option>');
+            $('#CboZonaAsignada').html('<option value="">Seleccione Zona</option>');
+            $('#CboPuestoAsignado').html('<option value="">Seleccione Puesto</option>');
+        }
+    });
+
+    function cargarDptos(selectedDpto, selectedMuni, selectedZona, selectedPuesto) {
+        $.ajax({
+            url: "index.php?url=ajaxgeo/getdepartamentos",
+            method: "POST",
+            data: { current: selectedDpto },
+            success: function(response) {
+                $('#txtDptoAsignado').html(response);
+                if (selectedDpto) {
+                    cargarMunis(selectedDpto, selectedMuni, selectedZona, selectedPuesto);
+                }
+            }
+        });
+    }
+
+    function cargarMunis(dpto, selectedMuni, selectedZona, selectedPuesto) {
+        $.ajax({
+            url: "index.php?url=ajaxgeo/getmunicipios",
+            method: "POST",
+            data: { departamento: dpto, current: selectedMuni },
+            success: function(response) {
+                $('#txtMuniAsignado').html(response);
+                if (selectedMuni) {
+                    cargarZonas(dpto, selectedMuni, selectedZona, selectedPuesto);
+                }
+            }
+        });
+    }
+
+    function cargarZonas(dpto, muni, selectedZona, selectedPuesto) {
+        $.ajax({
+            url: "index.php?url=ajaxgeo/getzonas",
+            method: "POST",
+            data: { departamento: dpto, municipio: muni, current: selectedZona },
+            success: function(response) {
+                $('#CboZonaAsignada').html(response);
+                if (selectedZona) {
+                    cargarPuestos(dpto, muni, selectedZona, selectedPuesto);
+                }
+            }
+        });
+    }
+
+    function cargarPuestos(dpto, muni, zona, selectedPuesto) {
+        $.ajax({
+            url: "index.php?url=ajaxgeo/getpuestos",
+            method: "POST",
+            data: { departamento: dpto, municipio: muni, zona: zona, current: selectedPuesto },
+            success: function(response) {
+                $('#CboPuestoAsignado').html(response);
+            }
+        });
+    }
+
+    $('#txtDptoAsignado').change(function() {
+        cargarMunis($(this).val(), '', '', '');
+    });
+
+    $('#txtMuniAsignado').change(function() {
+        cargarZonas($('#txtDptoAsignado').val(), $(this).val(), '', '');
+    });
+
+    $('#CboZonaAsignada').change(function() {
+        cargarPuestos($('#txtDptoAsignado').val(), $('#txtMuniAsignado').val(), $(this).val(), '');
+    });
+
     $('#btn_update').click(function() {
         if($("#txtNom_usuario").val() === "" || $("#txtUsuario").val() === "") {
              Swal.fire({ icon: 'warning', title: 'Campos vacíos', text: 'Complete los campos obligatorios.' });
