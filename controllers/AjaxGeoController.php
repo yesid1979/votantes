@@ -1,7 +1,7 @@
 <?php
 require_once 'models/AjaxGeoModel.php';
 
-class AjaxGeoController {
+class AjaxgeoController {
     private $model;
 
     public function __construct() {
