@@ -1,7 +1,7 @@
 <?php
 /** Se agrega la libreria PHPExcel **/
-require_once('../formatos/phpexcel/Classes/PHPExcel.php');
-include('../formatos/phpexcel/Classes/PHPExcel/IOFactory.php');
+require_once('../libs/PHPExcel/PHPExcel.php');
+require_once('../libs/PHPExcel/PHPExcel/IOFactory.php');
 //Variable que recibe el codigo
 $identificador=$_GET['codigo'];
 //conexion a la base

@@ -16,8 +16,8 @@ if (!tienePermiso($_SESSION['tipo_usuario'], 'Resultados', 'ver')) {
 }
 
 require_once('../funcs/class.conexion.php');
-require_once('phpexcel/Classes/PHPExcel.php');
-require_once('phpexcel/Classes/PHPExcel/IOFactory.php');
+require_once('../libs/PHPExcel/PHPExcel.php');
+require_once('../libs/PHPExcel/PHPExcel/IOFactory.php');
 
 $aspirante = isset($_GET['aspirante']) ? $_GET['aspirante'] : 'ALCALDIA';
 $dpto      = isset($_GET['dpto'])      ? $_GET['dpto']      : '';

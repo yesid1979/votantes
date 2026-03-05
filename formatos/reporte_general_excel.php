@@ -1,8 +1,8 @@
 <?php
 /** Exportador Genérico para Votantes y Simpatizantes **/
 require_once("../funcs/class.conexion.php");
-require_once('phpexcel/Classes/PHPExcel.php');
-require_once('phpexcel/Classes/PHPExcel/IOFactory.php');
+require_once('../libs/PHPExcel/PHPExcel.php');
+require_once('../libs/PHPExcel/PHPExcel/IOFactory.php');
 
 $tipo = isset($_GET['tipo']) ? $_GET['tipo'] : 'votantes';
 
