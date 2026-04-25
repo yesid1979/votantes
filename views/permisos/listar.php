@@ -1,7 +1,18 @@
 <?php include 'includes/header_dashboard.php'; ?>
 
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Gestión de Permisos por Rol</h1>
+<!-- Content Header -->
+<div class="page-header-container">
+    <div class="page-header-title">
+        <i class="bi bi-shield-check"></i>
+        <h1>Gestión de Permisos por Rol</h1>
+    </div>
+    <nav aria-label="breadcrumb" class="breadcrumb-modern">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.php?url=dashboard/index">Home</a></li>
+            <li class="breadcrumb-item text-muted">Seguridad</li>
+            <li class="breadcrumb-item active" aria-current="page">Permisos por Rol</li>
+        </ol>
+    </nav>
 </div>
 
 <div class="card shadow-sm mb-4">
@@ -46,9 +57,9 @@
                             <?php foreach($modulos as $modulo): ?>
                             <tr>
                                 <td>
-                                    <i class="bi <?php echo $modulo['icono']; ?>"></i> 
+                                    <i class="bi <?php echo isset($modulo['icono']) ? $modulo['icono'] : 'bi-app'; ?>"></i> 
                                     <?php echo $modulo['nombre']; ?>
-                                    <?php if($modulo['grupo']): ?>
+                                    <?php if(isset($modulo['grupo']) && $modulo['grupo']): ?>
                                         <span class="badge bg-secondary"><?php echo ucfirst(str_replace('_', ' ', $modulo['grupo'])); ?></span>
                                     <?php endif; ?>
                                 </td>

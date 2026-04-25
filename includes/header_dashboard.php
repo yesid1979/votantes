@@ -55,16 +55,20 @@ $tipo_usuario = $_SESSION['tipo_usuario']; // 1: Admin, 2: Digitador, 3: Lider
             // Verificar permisos para cada módulo (Deben coincidir EXACTO con la tabla 'modulos')
             $puedeVerZonas = tienePermiso($tipo_usuario, 'Zonas', 'ver');
             $puedeVerCandidatos = tienePermiso($tipo_usuario, 'Candidatos', 'ver');
+            $puedeVerComisiones = tienePermiso($tipo_usuario, 'Comisiones', 'ver');
             $puedeVerSimpatizantes = tienePermiso($tipo_usuario, 'Simpatizantes', 'ver');
             $puedeVerVotantes = tienePermiso($tipo_usuario, 'Votantes', 'ver');
             $puedeVerLideres = tienePermiso($tipo_usuario, 'Líderes', 'ver');
+            $puedeVerJac = tienePermiso($tipo_usuario, 'JAC', 'ver');
             $puedeVerUsuarios = tienePermiso($tipo_usuario, 'Usuarios', 'ver');
+            $puedeVerRoles = tienePermiso($tipo_usuario, 'Roles', 'ver');
+            $puedeVerPermisos = tienePermiso($tipo_usuario, 'Permisos', 'ver');
             $puedeVerAuditoria = tienePermiso($tipo_usuario, 'Auditoría', 'ver');
             
             $puedeVerDashboard = tienePermiso($tipo_usuario, 'Dashboard', 'ver');
             
-            $puedeVerDatosMaestros = $puedeVerZonas || $puedeVerCandidatos;
-            $puedeVerSeguridad = $puedeVerUsuarios || $puedeVerAuditoria;
+            $puedeVerDatosMaestros = $puedeVerZonas || $puedeVerCandidatos || $puedeVerComisiones;
+            $puedeVerSeguridad = $puedeVerUsuarios || $puedeVerAuditoria || $puedeVerRoles || $puedeVerPermisos;
             ?>
             <div class="list-group list-group-flush mt-3">
                 <?php if($puedeVerDashboard): ?>
@@ -95,6 +99,11 @@ $tipo_usuario = $_SESSION['tipo_usuario']; // 1: Admin, 2: Digitador, 3: Lider
                         <i class="bi bi-person-vcard"></i> Candidatos
                     </a>
                     <?php endif; ?>
+                    <?php if($puedeVerComisiones): ?>
+                    <a href="index.php?url=comision/index" class="list-group-item list-group-item-action ps-4 <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'comision') !== false) ? 'active' : ''; ?>">
+                        <i class="bi bi-diagram-3"></i> Comisiones JAC
+                    </a>
+                    <?php endif; ?>
                 </div>
                 <?php endif; ?>
                 
@@ -116,6 +125,12 @@ $tipo_usuario = $_SESSION['tipo_usuario']; // 1: Admin, 2: Digitador, 3: Lider
                 <?php if($puedeVerLideres): ?>
                 <a href="index.php?url=lider/index" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'lider') !== false) ? 'active' : ''; ?>">
                     <i class="bi bi-person-badge"></i> Líder amigo
+                </a>
+                <?php endif; ?>
+
+                <?php if($puedeVerJac): ?>
+                <a href="index.php?url=jac/index" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'jac') !== false) ? 'active' : ''; ?>">
+                    <i class="bi bi-house-door"></i> Afiliados JAC
                 </a>
                 <?php endif; ?>
 
@@ -161,6 +176,16 @@ $tipo_usuario = $_SESSION['tipo_usuario']; // 1: Admin, 2: Digitador, 3: Lider
                     <?php if($puedeVerUsuarios): ?>
                     <a href="index.php?url=usuario/index" class="list-group-item list-group-item-action ps-4 <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'usuario') !== false) ? 'active' : ''; ?>">
                         <i class="bi bi-people"></i> Usuarios
+                    </a>
+                    <?php endif; ?>
+                    <?php if($puedeVerRoles): ?>
+                    <a href="index.php?url=rol/index" class="list-group-item list-group-item-action ps-4 <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'rol') !== false) ? 'active' : ''; ?>">
+                        <i class="bi bi-person-gear"></i> Roles
+                    </a>
+                    <?php endif; ?>
+                    <?php if($puedeVerPermisos): ?>
+                    <a href="index.php?url=permiso/index" class="list-group-item list-group-item-action ps-4 <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'permiso/index') !== false) ? 'active' : ''; ?>">
+                        <i class="bi bi-shield-check"></i> Permisos por Rol
                     </a>
                     <?php endif; ?>
                     <?php if($puedeVerAuditoria): ?>

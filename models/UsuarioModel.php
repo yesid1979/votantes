@@ -180,25 +180,31 @@ class UsuarioModel {
 
     private function guardarPermisosUsuario($id_usuario, $permisos) {
         try {
+            // 1. Obtener todos los IDs de módulos para asegurar que guardamos un registro por cada uno
+            $stmtMod = $this->db->query("SELECT id_modulo FROM modulos");
+            $modulos = $stmtMod->fetchAll(PDO::FETCH_COLUMN);
+
+            // 2. Limpiar permisos actuales del usuario
             $sqlDelete = "DELETE FROM permisos_usuario WHERE id_usuario = :id_usuario";
             $stmtDelete = $this->db->prepare($sqlDelete);
             $stmtDelete->bindValue(':id_usuario', $id_usuario);
             $stmtDelete->execute();
 
-            if (empty($permisos)) return true;
-
+            // 3. Preparar inserción
             $sqlInsert = "INSERT INTO permisos_usuario (id_usuario, id_modulo, puede_ver, puede_crear, puede_editar, puede_eliminar, puede_ver_todo) 
                           VALUES (:id_usuario, :id_modulo, :puede_ver, :puede_crear, :puede_editar, :puede_eliminar, :puede_ver_todo)";
             $stmtInsert = $this->db->prepare($sqlInsert);
 
-            foreach ($permisos as $id_modulo => $acciones) {
+            // 4. Recorrer TODOS los módulos e insertar (marcando 0 si no viene en $permisos)
+            foreach ($modulos as $id_modulo) {
+                $acciones = isset($permisos[$id_modulo]) ? $permisos[$id_modulo] : array();
+                
                 $ver = isset($acciones['ver']) ? 1 : 0;
                 $crear = isset($acciones['crear']) ? 1 : 0;
                 $editar = isset($acciones['editar']) ? 1 : 0;
                 $eliminar = isset($acciones['eliminar']) ? 1 : 0;
                 $ver_todo = isset($acciones['ver_todo']) ? 1 : 0;
 
-                // Guardamos SIEMPRE el registro para que el "0" (desmarcado) sea una orden directa de prohibir
                 $stmtInsert->bindValue(':id_usuario', $id_usuario);
                 $stmtInsert->bindValue(':id_modulo', $id_modulo);
                 $stmtInsert->bindValue(':puede_ver', $ver);
@@ -210,6 +216,7 @@ class UsuarioModel {
             }
             return true;
         } catch (Exception $e) {
+            error_log("Error en UsuarioModel->guardarPermisosUsuario: " . $e->getMessage());
             return false;
         }
     }

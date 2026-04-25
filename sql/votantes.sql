@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Servidor local 219
+ Source Server         : Mysql
  Source Server Type    : MySQL
- Source Server Version : 50527 (5.5.27)
+ Source Server Version : 100138 (10.1.38-MariaDB)
  Source Host           : localhost:3306
  Source Schema         : votantes
 
  Target Server Type    : MySQL
- Target Server Version : 50527 (5.5.27)
+ Target Server Version : 100138 (10.1.38-MariaDB)
  File Encoding         : 65001
 
- Date: 05/03/2026 15:52:51
+ Date: 25/04/2026 13:03:37
 */
 
 SET NAMES utf8mb4;
@@ -22,7 +22,7 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `auditoria`;
 CREATE TABLE `auditoria`  (
-  `lastnro` int(11) NOT NULL AUTO_INCREMENT,
+  `lastnro` int NOT NULL AUTO_INCREMENT,
   `lastfecha` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `lasthora` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `lastlogin` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE `auditoria`  (
   `tipousu` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `lastip` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`lastnro`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 131 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 192 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of auditoria
@@ -49,13 +49,74 @@ INSERT INTO `auditoria` VALUES (127, '05/03/2026', '01:37:27 PM', 'administrador
 INSERT INTO `auditoria` VALUES (128, '05/03/2026', '01:44:06 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Registro votos para CAMARA en Zona 02 Puesto 04', 'Registro', 'Administrador', '::1');
 INSERT INTO `auditoria` VALUES (129, '05/03/2026', '02:05:13 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso datos de un candidato', 'Registro', 'Administrador', '::1');
 INSERT INTO `auditoria` VALUES (130, '05/03/2026', '02:13:42 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Registro votos para CAMARA en Zona 01 Puesto 01', 'Registro', 'Administrador', '::1');
+INSERT INTO `auditoria` VALUES (131, '05/03/2026', '04:33:53 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (132, '05/03/2026', '05:04:44 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (133, '05/03/2026', '05:35:01 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (134, '05/03/2026', '10:49:36 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Registro votos para SENADO en Zona 01 Puesto 01', 'Registro', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (135, '05/03/2026', '05:50:45 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (136, '05/03/2026', '06:24:09 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (137, '05/03/2026', '06:29:58 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (138, '05/03/2026', '06:57:32 PM', 'daniel.piedrahita', 'Jose Daniel Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Coordinador de puesto', '2803:1800:1351:5836:9896:7773:6ec6:86c2');
+INSERT INTO `auditoria` VALUES (139, '05/03/2026', '07:00:14 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '2803:1800:1351:5836:9896:7773:6ec6:86c2');
+INSERT INTO `auditoria` VALUES (140, '05/03/2026', '07:02:23 PM', 'daniel.piedrahita', 'Jose Daniel Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Coordinador de puesto', '2803:1800:1351:5836:9896:7773:6ec6:86c2');
+INSERT INTO `auditoria` VALUES (141, '05/03/2026', '08:00:34 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.49.85.102');
+INSERT INTO `auditoria` VALUES (142, '05/03/2026', '08:39:45 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '181.71.85.193');
+INSERT INTO `auditoria` VALUES (143, '05/03/2026', '09:04:42 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.49.85.114');
+INSERT INTO `auditoria` VALUES (144, '06/03/2026', '02:14:24 AM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso datos de un lider', 'Registro', 'Lider', '181.49.85.114');
+INSERT INTO `auditoria` VALUES (145, '05/03/2026', '10:31:01 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.52.231.59');
+INSERT INTO `auditoria` VALUES (146, '06/03/2026', '03:34:26 AM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso datos de un lider', 'Registro', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (147, '05/03/2026', '10:39:26 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '181.71.85.193');
+INSERT INTO `auditoria` VALUES (148, '05/03/2026', '10:40:58 PM', '34606215', 'carmen Lucia Bolaños Bolaños', 'Ingreso al sistema', 'Inicio session', 'Lider', '186.81.103.252');
+INSERT INTO `auditoria` VALUES (149, '06/03/2026', '03:46:31 AM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Actualizo datos de un lider', 'Modifico', 'Administrador', '181.71.85.193');
+INSERT INTO `auditoria` VALUES (150, '05/03/2026', '10:47:41 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (151, '05/03/2026', '10:47:49 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '181.71.85.193');
+INSERT INTO `auditoria` VALUES (152, '05/03/2026', '10:48:28 PM', '34606215', 'Carmen Lucia Bolaños Bolaños ', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.71.85.193');
+INSERT INTO `auditoria` VALUES (153, '05/03/2026', '10:51:08 PM', '34606215', 'Carmen Lucia Bolaños Bolaños ', 'Ingreso al sistema', 'Inicio session', 'Lider', '186.81.103.252');
+INSERT INTO `auditoria` VALUES (154, '05/03/2026', '10:51:41 PM', '34606215', 'Carmen Lucia Bolaños Bolaños ', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (155, '06/03/2026', '03:57:59 AM', '34606215', 'Carmen Lucia Bolaños Bolaños ', 'Ingreso datos de un votante', 'Registro', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (156, '06/03/2026', '06:27:40 AM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '2803:1800:1102:3f3f:c9a5:622a:7322:287d');
+INSERT INTO `auditoria` VALUES (157, '06/03/2026', '02:50:28 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '191.106.194.118');
+INSERT INTO `auditoria` VALUES (158, '06/03/2026', '03:21:18 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '191.106.194.118');
+INSERT INTO `auditoria` VALUES (159, '06/03/2026', '05:27:49 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (160, '09/03/2026', '06:29:19 AM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '2803:1800:136b:ea12:d0d1:336b:aa17:e11c');
+INSERT INTO `auditoria` VALUES (161, '12/03/2026', '05:52:11 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '200.29.103.72');
+INSERT INTO `auditoria` VALUES (162, '14/03/2026', '11:17:14 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '2800:484:c7a:1600:59b6:a97e:7c30:eb4');
+INSERT INTO `auditoria` VALUES (163, '15/03/2026', '04:39:16 AM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso datos de un lider', 'Registro', 'Lider', '186.81.103.86');
+INSERT INTO `auditoria` VALUES (164, '14/03/2026', '11:44:42 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.63.178.61');
+INSERT INTO `auditoria` VALUES (165, '14/03/2026', '11:45:22 PM', '38886958', 'Olga Lorena Tapias Grajales', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.63.178.61');
+INSERT INTO `auditoria` VALUES (166, '15/03/2026', '04:48:56 AM', '38886958', 'Olga Lorena Tapias Grajales', 'Ingreso datos de un votante', 'Registro', 'Lider', '186.81.103.86');
+INSERT INTO `auditoria` VALUES (167, '15/03/2026', '07:35:53 AM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (168, '15/03/2026', '07:45:17 AM', '1107099732', 'Daniela Revelo Cardoza', 'Ingreso al sistema', 'Inicio session', 'Lider', '186.81.103.252');
+INSERT INTO `auditoria` VALUES (169, '15/03/2026', '07:51:29 AM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '186.81.103.252');
+INSERT INTO `auditoria` VALUES (170, '15/03/2026', '01:03:14 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso datos de un votante', 'Registro', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (171, '15/03/2026', '08:03:39 AM', '38886958', 'Olga Lorena Tapias Grajales', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (172, '15/03/2026', '08:37:02 AM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '186.81.103.252');
+INSERT INTO `auditoria` VALUES (173, '15/03/2026', '01:42:34 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso datos de un lider', 'Registro', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (174, '15/03/2026', '09:01:21 AM', '1144143431', 'Eylen Giseth Murillo Garces', 'Ingreso al sistema', 'Inicio session', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (175, '15/03/2026', '02:04:28 PM', '1144143431', 'Eylen Giseth Murillo Garces', 'Ingreso datos de un votante', 'Registro', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (176, '15/03/2026', '02:35:18 PM', '1144143431', 'Eylen Giseth Murillo Garces', 'Actualizo datos de un votante', 'Modifico', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (177, '15/03/2026', '02:35:23 PM', '1144143431', 'Eylen Giseth Murillo Garces', 'Actualizo datos de un votante', 'Modifico', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (178, '15/03/2026', '12:25:43 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '186.81.103.86');
+INSERT INTO `auditoria` VALUES (179, '15/03/2026', '05:31:59 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso datos de un lider', 'Registro', 'Lider', '186.81.102.147');
+INSERT INTO `auditoria` VALUES (180, '18/03/2026', '07:40:01 PM', '1144143431', 'Eylen Giseth Murillo Garces', 'Ingreso al sistema', 'Inicio session', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (181, '19/03/2026', '12:54:40 AM', '1144143431', 'Eylen Giseth Murillo Garces', 'Ingreso datos de un simpatizante', 'Registro', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (182, '19/03/2026', '12:57:02 AM', '1144143431', 'Eylen Giseth Murillo Garces', 'Ingreso datos de un votante', 'Registro', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (183, '19/03/2026', '12:58:50 AM', '1144143431', 'Eylen Giseth Murillo Garces', 'Ingreso datos de un votante', 'Registro', 'Lider', '191.111.216.202');
+INSERT INTO `auditoria` VALUES (184, '01/04/2026', '12:16:02 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '181.71.85.193');
+INSERT INTO `auditoria` VALUES (185, '05/04/2026', '08:53:39 PM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.52.231.59');
+INSERT INTO `auditoria` VALUES (186, '05/04/2026', '08:57:50 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '181.71.85.193');
+INSERT INTO `auditoria` VALUES (187, '22/04/2026', '12:31:40 AM', 'estivel.sanchez', 'Estivel Aldemar Sanchez Erazo', 'Ingreso al sistema', 'Inicio session', 'Lider', '181.50.102.177');
+INSERT INTO `auditoria` VALUES (188, '25/04/2026', '11:04:20 AM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '::1');
+INSERT INTO `auditoria` VALUES (189, '25/04/2026', '12:13:35 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '::1');
+INSERT INTO `auditoria` VALUES (190, '25/04/2026', '12:27:14 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '::1');
+INSERT INTO `auditoria` VALUES (191, '25/04/2026', '12:54:55 PM', 'administrador', 'Yesid Javier Piedrahita Correa', 'Ingreso al sistema', 'Inicio session', 'Administrador', '::1');
 
 -- ----------------------------
 -- Table structure for candidatos
 -- ----------------------------
 DROP TABLE IF EXISTS `candidatos`;
 CREATE TABLE `candidatos`  (
-  `id_candidato` int(11) NOT NULL AUTO_INCREMENT,
+  `id_candidato` int NOT NULL AUTO_INCREMENT,
   `logo_partido` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `nom_partido` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nom_candidato` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -74,11 +135,57 @@ INSERT INTO `candidatos` VALUES (6, 'default_logo.png', 'Nuevo Liberalismo', 'Ju
 INSERT INTO `candidatos` VALUES (7, 'default_logo.png', 'Liberal', 'Julian', 'default_photo.png', '111', 'CAMARA', 'Activo');
 
 -- ----------------------------
+-- Table structure for jac_afiliados
+-- ----------------------------
+DROP TABLE IF EXISTS `jac_afiliados`;
+CREATE TABLE `jac_afiliados`  (
+  `id_afiliado` int NOT NULL AUTO_INCREMENT,
+  `fecha_inscripcion` date NULL DEFAULT NULL,
+  `ced_afiliado` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nom_afiliado` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `dir_afiliado` varchar(150) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `tel_afiliado` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ocupacion_afiliado` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `id_comision` int NULL DEFAULT NULL,
+  `fechnac_afiliado` date NULL DEFAULT NULL,
+  `edad_afiliado` int NULL DEFAULT NULL,
+  `ced_lider` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id_afiliado`) USING BTREE,
+  UNIQUE INDEX `ced_afiliado_unique`(`ced_afiliado` ASC) USING BTREE,
+  INDEX `fk_jac_comision`(`id_comision` ASC) USING BTREE,
+  CONSTRAINT `fk_jac_comision` FOREIGN KEY (`id_comision`) REFERENCES `jac_comisiones` (`id_comision`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of jac_afiliados
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for jac_comisiones
+-- ----------------------------
+DROP TABLE IF EXISTS `jac_comisiones`;
+CREATE TABLE `jac_comisiones`  (
+  `id_comision` int NOT NULL AUTO_INCREMENT,
+  `nombre_comision` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id_comision`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of jac_comisiones
+-- ----------------------------
+INSERT INTO `jac_comisiones` VALUES (1, 'Salud');
+INSERT INTO `jac_comisiones` VALUES (2, 'Educación');
+INSERT INTO `jac_comisiones` VALUES (3, 'Deportes');
+INSERT INTO `jac_comisiones` VALUES (4, 'Obras y Servicios');
+INSERT INTO `jac_comisiones` VALUES (5, 'Medio Ambiente');
+INSERT INTO `jac_comisiones` VALUES (6, 'Convivencia y Conciliación');
+
+-- ----------------------------
 -- Table structure for lideres
 -- ----------------------------
 DROP TABLE IF EXISTS `lideres`;
 CREATE TABLE `lideres`  (
-  `id_lider` int(11) NOT NULL AUTO_INCREMENT,
+  `id_lider` int NOT NULL AUTO_INCREMENT,
   `ced_lider` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nom_lider` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `dir_lider` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -100,27 +207,32 @@ CREATE TABLE `lideres`  (
   `cumple_lider` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `sexo_lider` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_lider`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of lideres
 -- ----------------------------
+INSERT INTO `lideres` VALUES (1, '16840143', 'Andrés Erazo ', 'Calle 33 No 28  47 ', 'El Paraiso ', '12', 'andreserazo07@gmail.com', NULL, '3113402531', '18', '06', NULL, NULL, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `lideres` VALUES (2, '34606215', 'Carmen Lucia Bolaños Bolaños', 'calle 50 # 86-56', 'Calle del Lili', '17', 'lucia.bolanos@outlook.com', NULL, '3165720096', '25', '03', NULL, NULL, '17', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `lideres` VALUES (3, '38886958', 'Olga Lorena Tapias Grajales ', '', 'Ciudad Modelo', '11', '', NULL, '', '14', '02', NULL, NULL, '14', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `lideres` VALUES (4, '1144143431', 'Eylen Giseth Murillo Garces', 'Calle 52 # 1D -12', 'El Sena ', '5', 'emurillo2024@gmail.com', NULL, '3216846144', '06', '05', NULL, NULL, '20', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `lideres` VALUES (5, '1107099732', 'Daniela Stephany Revelo Cardoza', 'Calle 3 Oeste # 39A-35', 'Belen ', '20', 'danielarevelo113@gmail.com', NULL, '3212172615', '31', '05', NULL, NULL, '5', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for modulos
 -- ----------------------------
 DROP TABLE IF EXISTS `modulos`;
 CREATE TABLE `modulos`  (
-  `id_modulo` int(11) NOT NULL AUTO_INCREMENT,
+  `id_modulo` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `descripcion` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `icono` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT 'bi-circle',
   `url` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `orden` int(11) NULL DEFAULT 0,
+  `orden` int NULL DEFAULT 0,
   `grupo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `activo` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id_modulo`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of modulos
@@ -155,46 +267,34 @@ INSERT INTO `modulos` VALUES (27, 'Registro v.', 'Ingreso de votos', 'bi-box-arr
 INSERT INTO `modulos` VALUES (28, 'Resultados', 'Resultados en vivo', 'bi-bar-chart-fill', 'registrovoto/resultados', 10, NULL, 1);
 INSERT INTO `modulos` VALUES (29, 'Reportes G.', 'Reportes generales del sistema', 'bi-file-earmark-bar-graph', 'reporte/index', 11, NULL, 1);
 INSERT INTO `modulos` VALUES (30, 'Reportes G.', 'Reportes generales del sistema', 'bi-file-earmark-bar-graph', 'reporte/index', 11, NULL, 1);
+INSERT INTO `modulos` VALUES (31, 'JAC', NULL, 'bi-circle', '', 0, NULL, 1);
+INSERT INTO `modulos` VALUES (32, 'Comisiones', NULL, 'bi-circle', '', 0, NULL, 1);
+INSERT INTO `modulos` VALUES (33, 'Roles', NULL, 'bi-circle', '', 0, NULL, 1);
+INSERT INTO `modulos` VALUES (34, 'Permisos', NULL, 'bi-circle', '', 0, NULL, 1);
 
 -- ----------------------------
 -- Table structure for permisos
 -- ----------------------------
 DROP TABLE IF EXISTS `permisos`;
 CREATE TABLE `permisos`  (
-  `id_permiso` int(11) NOT NULL AUTO_INCREMENT,
-  `id_tipo` int(11) NOT NULL,
-  `id_modulo` int(11) NOT NULL,
+  `id_permiso` int NOT NULL AUTO_INCREMENT,
+  `id_tipo` int NOT NULL,
+  `id_modulo` int NOT NULL,
   `puede_ver` tinyint(1) NULL DEFAULT 1,
   `puede_crear` tinyint(1) NULL DEFAULT 1,
   `puede_editar` tinyint(1) NULL DEFAULT 1,
   `puede_eliminar` tinyint(1) NULL DEFAULT 1,
   `puede_ver_todo` tinyint(1) NULL DEFAULT 0,
   PRIMARY KEY (`id_permiso`) USING BTREE,
-  UNIQUE INDEX `tipo_modulo`(`id_tipo`, `id_modulo`) USING BTREE,
-  INDEX `id_modulo`(`id_modulo`) USING BTREE,
+  UNIQUE INDEX `tipo_modulo`(`id_tipo` ASC, `id_modulo` ASC) USING BTREE,
+  INDEX `id_modulo`(`id_modulo` ASC) USING BTREE,
   CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`id_tipo`) REFERENCES `tipo_usuario` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`id_modulo`) REFERENCES `modulos` (`id_modulo`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 68 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 101 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of permisos
 -- ----------------------------
-INSERT INTO `permisos` VALUES (33, 1, 1, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (34, 1, 2, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (35, 1, 3, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (36, 1, 4, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (37, 1, 5, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (38, 1, 6, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (39, 1, 7, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (40, 1, 8, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (41, 2, 1, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (42, 2, 2, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (43, 2, 3, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (44, 2, 4, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (45, 2, 5, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (46, 2, 6, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (47, 2, 7, 0, 0, 0, 0, 0);
-INSERT INTO `permisos` VALUES (48, 2, 8, 0, 0, 0, 0, 0);
 INSERT INTO `permisos` VALUES (49, 3, 1, 1, 0, 0, 0, 0);
 INSERT INTO `permisos` VALUES (50, 3, 2, 0, 0, 0, 0, 0);
 INSERT INTO `permisos` VALUES (51, 3, 3, 0, 0, 0, 0, 0);
@@ -203,81 +303,125 @@ INSERT INTO `permisos` VALUES (53, 3, 5, 1, 1, 1, 1, 0);
 INSERT INTO `permisos` VALUES (54, 3, 6, 0, 0, 0, 0, 0);
 INSERT INTO `permisos` VALUES (55, 3, 7, 0, 0, 0, 0, 0);
 INSERT INTO `permisos` VALUES (56, 3, 8, 0, 0, 0, 0, 0);
-INSERT INTO `permisos` VALUES (57, 1, 25, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (58, 1, 26, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (59, 2, 25, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (60, 2, 26, 1, 1, 1, 1, 0);
 INSERT INTO `permisos` VALUES (63, 4, 25, 1, 1, 0, 0, 0);
-INSERT INTO `permisos` VALUES (64, 1, 29, 1, 1, 1, 1, 0);
-INSERT INTO `permisos` VALUES (65, 2, 29, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (70, 3, 31, 0, 0, 0, 0, 0);
+INSERT INTO `permisos` VALUES (73, 3, 32, 0, 0, 0, 0, 0);
+INSERT INTO `permisos` VALUES (75, 1, 32, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (76, 1, 1, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (77, 1, 31, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (78, 1, 6, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (79, 1, 25, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (80, 1, 29, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (81, 1, 26, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (82, 1, 33, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (83, 1, 4, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (84, 1, 5, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (85, 1, 3, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (86, 1, 2, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (87, 1, 8, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (88, 1, 7, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (89, 2, 32, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (90, 2, 1, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (91, 2, 31, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (92, 2, 6, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (93, 2, 25, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (94, 2, 29, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (95, 2, 26, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (96, 2, 4, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (97, 2, 5, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (98, 2, 3, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (99, 2, 2, 1, 1, 1, 1, 0);
+INSERT INTO `permisos` VALUES (100, 1, 34, 1, 1, 1, 1, 1);
 
 -- ----------------------------
 -- Table structure for permisos_usuario
 -- ----------------------------
 DROP TABLE IF EXISTS `permisos_usuario`;
 CREATE TABLE `permisos_usuario`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_modulo` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_usuario` int NOT NULL,
+  `id_modulo` int NOT NULL,
   `puede_ver` tinyint(1) NULL DEFAULT 1,
   `puede_crear` tinyint(1) NULL DEFAULT 1,
   `puede_editar` tinyint(1) NULL DEFAULT 1,
   `puede_eliminar` tinyint(1) NULL DEFAULT 1,
   `puede_ver_todo` tinyint(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `usuario_modulo`(`id_usuario`, `id_modulo`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 102 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+  UNIQUE INDEX `usuario_modulo`(`id_usuario` ASC, `id_modulo` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 318 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of permisos_usuario
 -- ----------------------------
-INSERT INTO `permisos_usuario` VALUES (58, 9, 1, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (59, 9, 2, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (60, 9, 3, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (61, 9, 4, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (62, 9, 5, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (63, 9, 6, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (80, 1, 1, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (81, 1, 2, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (82, 1, 3, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (83, 1, 4, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (84, 1, 5, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (85, 1, 6, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (86, 1, 7, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (87, 1, 8, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (88, 1, 25, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (89, 1, 26, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (90, 1, 29, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (91, 7, 1, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (92, 7, 2, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (93, 7, 3, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (94, 7, 4, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (95, 7, 5, 1, 1, 1, 1, 1);
-INSERT INTO `permisos_usuario` VALUES (96, 7, 6, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (97, 7, 7, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (98, 7, 8, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (99, 7, 25, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (100, 7, 26, 1, 1, 1, 1, 0);
-INSERT INTO `permisos_usuario` VALUES (101, 7, 29, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (113, 9, 1, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (114, 9, 25, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (115, 9, 26, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (154, 7, 32, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (155, 7, 1, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (156, 7, 31, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (157, 7, 6, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (158, 7, 25, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (159, 7, 29, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (160, 7, 26, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (161, 7, 4, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (162, 7, 5, 1, 1, 1, 1, 1);
+INSERT INTO `permisos_usuario` VALUES (163, 7, 3, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (164, 7, 2, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (165, 7, 8, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (166, 7, 7, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (284, 1, 1, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (285, 1, 2, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (286, 1, 3, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (287, 1, 4, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (288, 1, 5, 1, 1, 1, 1, 1);
+INSERT INTO `permisos_usuario` VALUES (289, 1, 6, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (290, 1, 7, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (291, 1, 8, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (292, 1, 9, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (293, 1, 10, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (294, 1, 11, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (295, 1, 12, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (296, 1, 13, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (297, 1, 14, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (298, 1, 15, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (299, 1, 16, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (300, 1, 17, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (301, 1, 18, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (302, 1, 19, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (303, 1, 20, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (304, 1, 21, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (305, 1, 22, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (306, 1, 23, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (307, 1, 24, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (308, 1, 25, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (309, 1, 26, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (310, 1, 27, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (311, 1, 28, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (312, 1, 29, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (313, 1, 30, 0, 0, 0, 0, 0);
+INSERT INTO `permisos_usuario` VALUES (314, 1, 31, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (315, 1, 32, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (316, 1, 33, 1, 1, 1, 1, 0);
+INSERT INTO `permisos_usuario` VALUES (317, 1, 34, 1, 1, 1, 1, 0);
 
 -- ----------------------------
 -- Table structure for registro_votos
 -- ----------------------------
 DROP TABLE IF EXISTS `registro_votos`;
 CREATE TABLE `registro_votos`  (
-  `id_voto` int(11) NOT NULL AUTO_INCREMENT,
+  `id_voto` int NOT NULL AUTO_INCREMENT,
   `dpto` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `muni` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `zona` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `puesto` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `mesa` int(11) NULL DEFAULT NULL,
+  `mesa` int NULL DEFAULT NULL,
   `aspirante` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_candidato` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `votos` int(11) NULL DEFAULT NULL,
+  `votos` int NULL DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_usuario` int(11) NULL DEFAULT NULL,
+  `id_usuario` int NULL DEFAULT NULL,
   PRIMARY KEY (`id_voto`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 89 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 113 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of registro_votos
@@ -370,13 +514,37 @@ INSERT INTO `registro_votos` VALUES (85, 'VALLE', 'CALI', '01', '01', 21, 'CAMAR
 INSERT INTO `registro_votos` VALUES (86, 'VALLE', 'CALI', '01', '01', 22, 'CAMARA', '7', 1, '2026-03-05 14:13:42', 1);
 INSERT INTO `registro_votos` VALUES (87, 'VALLE', 'CALI', '01', '01', 23, 'CAMARA', '7', 1, '2026-03-05 14:13:42', 1);
 INSERT INTO `registro_votos` VALUES (88, 'VALLE', 'CALI', '01', '01', 24, 'CAMARA', '7', 1, '2026-03-05 14:13:42', 1);
+INSERT INTO `registro_votos` VALUES (89, 'VALLE', 'CALI', '01', '01', 1, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (90, 'VALLE', 'CALI', '01', '01', 2, 'SENADO', '5', 2, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (91, 'VALLE', 'CALI', '01', '01', 3, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (92, 'VALLE', 'CALI', '01', '01', 4, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (93, 'VALLE', 'CALI', '01', '01', 5, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (94, 'VALLE', 'CALI', '01', '01', 6, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (95, 'VALLE', 'CALI', '01', '01', 7, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (96, 'VALLE', 'CALI', '01', '01', 8, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (97, 'VALLE', 'CALI', '01', '01', 9, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (98, 'VALLE', 'CALI', '01', '01', 10, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (99, 'VALLE', 'CALI', '01', '01', 11, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (100, 'VALLE', 'CALI', '01', '01', 12, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (101, 'VALLE', 'CALI', '01', '01', 13, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (102, 'VALLE', 'CALI', '01', '01', 14, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (103, 'VALLE', 'CALI', '01', '01', 15, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (104, 'VALLE', 'CALI', '01', '01', 16, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (105, 'VALLE', 'CALI', '01', '01', 17, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (106, 'VALLE', 'CALI', '01', '01', 18, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (107, 'VALLE', 'CALI', '01', '01', 19, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (108, 'VALLE', 'CALI', '01', '01', 20, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (109, 'VALLE', 'CALI', '01', '01', 21, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (110, 'VALLE', 'CALI', '01', '01', 22, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (111, 'VALLE', 'CALI', '01', '01', 23, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
+INSERT INTO `registro_votos` VALUES (112, 'VALLE', 'CALI', '01', '01', 24, 'SENADO', '5', 1, '2026-03-05 22:49:36', 1);
 
 -- ----------------------------
 -- Table structure for simpatizante
 -- ----------------------------
 DROP TABLE IF EXISTS `simpatizante`;
 CREATE TABLE `simpatizante`  (
-  `id_simpatizante` int(11) NOT NULL AUTO_INCREMENT,
+  `id_simpatizante` int NOT NULL AUTO_INCREMENT,
   `ced_simpatizante` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `nom_simpatizante` varchar(300) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `dir_simpatizante` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
@@ -397,18 +565,19 @@ CREATE TABLE `simpatizante`  (
   `sexo_simpatizante` varchar(60) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `ced_lider` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_simpatizante`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of simpatizante
 -- ----------------------------
+INSERT INTO `simpatizante` VALUES (1, '1111793093', 'Álvaro Murillo', 'Calle 58 # 1a1 58', 'Torres de Comfandi ', '5', 'alvarom@gmail.com', '0', '3157556423', '05', '04', 'COLEGIO INEM', 'KR 5N #61-126', '38', '1993-07-22', '32', NULL, NULL, 'Masculino', NULL);
 
 -- ----------------------------
 -- Table structure for tipo_usuario
 -- ----------------------------
 DROP TABLE IF EXISTS `tipo_usuario`;
 CREATE TABLE `tipo_usuario`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `tipo` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
@@ -427,18 +596,18 @@ INSERT INTO `tipo_usuario` VALUES (5, 'Jefe de zona');
 -- ----------------------------
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `ced_usuario` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `usuario` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `password_usu` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `nombre` varchar(300) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `correo` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `last_session` datetime NULL DEFAULT NULL,
-  `activacion` int(11) NOT NULL DEFAULT 0,
+  `activacion` int NOT NULL DEFAULT 0,
   `token` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `token_password` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `password_request` int(11) NULL DEFAULT 0,
-  `id_tipo` int(11) NOT NULL,
+  `password_request` int NULL DEFAULT 0,
+  `id_tipo` int NOT NULL,
   `dpto_asignado` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'VALLE',
   `muni_asignado` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT 'CALI',
   `zona_asignada` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -447,21 +616,29 @@ CREATE TABLE `usuarios`  (
   `tel_usuario` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `cel_usuario` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of usuarios
 -- ----------------------------
-INSERT INTO `usuarios` VALUES (1, '16839817', 'administrador', '$2y$10$.dO7upgeEAkOdvo7BeB8DuMRGkne6ACJZsV66iY20MWyLbJTFhrBi', 'Yesid Javier Piedrahita Correa', 'yjpc79@gmail.com', '2026-03-05 10:54:55', 1, '4986035b30eacd1b4cac408bdaa7576e', '', 0, 1, 'VALLE', 'CALI', NULL, NULL, 'Carrera 3Asur # 6-119 Parques de Castilla', '5152011', '3016744172');
-INSERT INTO `usuarios` VALUES (7, '14590494', 'estivel.sanchez', '$2y$10$dAkLz9GvdRPBPzonNRc1xeFTficwjNayjnF5SvChNmVIEi5n2qmJW', 'Estivel Aldemar Sanchez Erazo', 'aldemarsanchezerazo@gmail.com', '2026-03-02 15:04:46', 1, '', '', 0, 3, 'VALLE', 'CALI', NULL, NULL, 'Transversal 30 # 28-47', '3176477936', '3176477936');
-INSERT INTO `usuarios` VALUES (8, '16840143', 'andres.erazo', '$2y$10$LTGm0ALoob8.Gx6kKDyp2uooiPxzL5syAvRoS9EUS9ffmo/iKOWmy', 'Andres Erazo', 'andreserazo07@gmail.com', '2026-02-01 01:12:09', 1, '', '', 0, 3, 'VALLE', 'CALI', NULL, NULL, 'Transveral 30 # 28 -47', '', '3113402531');
+INSERT INTO `usuarios` VALUES (1, '16839817', 'administrador', '$2y$10$.dO7upgeEAkOdvo7BeB8DuMRGkne6ACJZsV66iY20MWyLbJTFhrBi', 'Yesid Javier Piedrahita Correa', 'yjpc79@gmail.com', '2026-04-25 12:54:55', 1, '4986035b30eacd1b4cac408bdaa7576e', '', 0, 1, 'VALLE', 'CALI', NULL, NULL, 'Carrera 3Asur # 6-119 Parques de Castilla', '5152011', '3016744172');
+INSERT INTO `usuarios` VALUES (7, '14590494', 'estivel.sanchez', '$2y$10$dAkLz9GvdRPBPzonNRc1xeFTficwjNayjnF5SvChNmVIEi5n2qmJW', 'Estivel Aldemar Sanchez Erazo', 'aldemarsanchezerazo@gmail.com', '2026-04-22 05:31:40', 1, '', '', 0, 3, 'VALLE', 'CALI', NULL, NULL, 'Transversal 30 # 28-47', '3176477936', '3176477936');
+INSERT INTO `usuarios` VALUES (9, '16839290', 'daniel.piedrahita', '$2y$10$1T3ts7M4kmVoa12lEQVUaOCFgROEtkDoxHkX6Merj9qmzYK.3UrLS', 'Jose Daniel Piedrahita Correa', 'daniel.piedrahita@cali.gov.co', '2026-03-06 00:02:23', 1, '', '', 0, 4, 'VALLE', 'CALI', '08', '01', 'Carrera 3asur # 6-119', '3016744172', '3016744172');
+INSERT INTO `usuarios` VALUES (10, '16840143', '16840143', '$2y$10$TRxS8SC6EJJc1Lt0zLcjg.jfBHm40DZSTswMHWtGgxi6z.O6IuePS', 'Andrés Erazo ', 'andreserazo07@gmail.com', NULL, 1, '', NULL, 0, 3, 'VALLE', 'CALI', NULL, NULL, 'Calle 33 No 28  47 ', NULL, '3113402531');
+INSERT INTO `usuarios` VALUES (12, '34606215', '12345', '$2y$10$4Q/IBOGHscLkU6Qt5OPDbOTKg6i3g9MX83z1C0veXoTo9HLdJtWui', 'Carmen Lucia Bolaños Bolaños ', 'lucia.bolanos@outlook.com', '2026-03-06 03:51:41', 1, '', '', 0, 3, 'VALLE', 'CALI', '', '', 'Calle 50 # 86-56', '', '3165720096');
+INSERT INTO `usuarios` VALUES (13, '38886958', '38886958', '$2y$10$K5Fu0IKqW8gYcJT9YYXUh.5duOxjBwf8jlq./m8oGMNOUeAU8AI9u', 'Olga Lorena Tapias Grajales', '', '2026-03-15 13:03:39', 1, '', '', 0, 3, 'VALLE', '', '', '', '', '', '');
+INSERT INTO `usuarios` VALUES (14, '38886958', '38886958', '$2y$10$IC3qYXS5WRu4XDlw6PfQSOYAqgV/DOgJj.WqVumI6AXvLymCUAYfO', 'Olga Lorena Tapias Grajales ', '', NULL, 1, '', NULL, 0, 3, 'VALLE', 'CALI', NULL, NULL, '', NULL, '');
+INSERT INTO `usuarios` VALUES (15, '1107099732', '1107099732', '$2y$10$sfl7tS3jyU9NmqkJygwZUe4mQVsQbtCJi4E4JjXxmnRZ9U5gsjW6W', 'Daniela Revelo Cardoza', 'danielarevelo113@hotmail.com', '2026-03-15 12:45:17', 1, '', '', 0, 3, 'VALLE', '', '', '', 'Calle 3 Oeste # 39A-35', '', '3212172615');
+INSERT INTO `usuarios` VALUES (16, '1144143431', '1144143431', '$2y$10$CYwwWhsKe7RPXKHkKUmLlOVO6Nub2q/L93PElhYsnXTHy98ZJgCky', 'Eylen Giseth Murillo Garces', 'emurillo2024@gmail.com', '2026-03-19 00:40:01', 1, '', '', 0, 3, 'VALLE', '', '', '', 'Calle 52 # 1D-12', '', '3216846144');
+INSERT INTO `usuarios` VALUES (17, '1144143431', '1144143431', '$2y$10$hrLuVLLCmveAHlnJqfn.kumHeiEd62W/aXGofkwxvxy1jN5j1O2sm', 'Eylen Giseth Murillo Garces', 'emurillo2024@gmail.com', NULL, 1, '', NULL, 0, 3, 'VALLE', 'CALI', NULL, NULL, 'Calle 52 # 1D -12', NULL, '3216846144');
+INSERT INTO `usuarios` VALUES (18, '1107099732', '1107099732', '$2y$10$Sr5/au1Co.lDo3Ddk3Ynk.KXoRtdISQWYmUFD43azytrUljXzLi9W', 'Daniela Stephany Revelo Cardoza', 'danielarevelo113@gmail.com', NULL, 1, '', NULL, 0, 3, 'VALLE', 'CALI', NULL, NULL, 'Calle 3 Oeste # 39A-35', NULL, '3212172615');
 
 -- ----------------------------
 -- Table structure for votantes
 -- ----------------------------
 DROP TABLE IF EXISTS `votantes`;
 CREATE TABLE `votantes`  (
-  `id_votante` int(11) NOT NULL AUTO_INCREMENT,
+  `id_votante` int NOT NULL AUTO_INCREMENT,
   `ced_votante` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `nom_votante` varchar(300) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `dir_votante` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
@@ -483,18 +660,24 @@ CREATE TABLE `votantes`  (
   `sexo_votante` varchar(60) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `ced_lider` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_votante`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of votantes
 -- ----------------------------
+INSERT INTO `votantes` VALUES (1, '16929595', 'Jhon Jairo Lopez mamiam', 'Cra 38 B # 1A oeste 28', 'Belen', '20', '', NULL, '', NULL, '31', '05', 'SEDE ANTONIA SANTOS', 'CRA 38 A # 3A-14 OESTE', '1', NULL, NULL, NULL, NULL, NULL, '34606215');
+INSERT INTO `votantes` VALUES (2, '14959326', 'Oscar MArino Zuñiga Prieto', '', '', '11', '', NULL, '', NULL, '09', '02', 'ESCUELA LOS FARALLONES', 'KR 7J #72-10', '2', NULL, NULL, NULL, NULL, NULL, '38886958');
+INSERT INTO `votantes` VALUES (3, '14959326', 'Orfa Nelly Rodriguez Zuñiga', '', '', '', '', NULL, '', NULL, '18', '05', 'IE JULIO DE CAICEDO Y TELLEZ', 'CLL 59 No 24E-40', '', NULL, NULL, NULL, NULL, NULL, '38886958');
+INSERT INTO `votantes` VALUES (4, '1144143431', 'Eylen Giseth Murillo Garcés ', 'Cl. 52 # 1D-2 12', 'Sena', '5', 'emurillo2024@gmail.com', NULL, '3216846144', NULL, '06', '05', 'ESCUELA MARIO LLOREDA', 'KR 1D #51-16', '20', NULL, NULL, NULL, NULL, NULL, '1144143431');
+INSERT INTO `votantes` VALUES (5, '1111793093', 'Eylen Murillo', 'Álvaro Murillo ', 'Torres de Comfandi ', '5', 'emurillo2024@gmail.com', NULL, '3157556423', NULL, '05', '04', 'COLEGIO INEM', 'KR 5N #61-126', '38', NULL, NULL, NULL, NULL, NULL, '1144143431');
+INSERT INTO `votantes` VALUES (6, '10389384', 'Jose Eder Bonilla Acevedo ', 'Cl. 52 # 1D-2 12', 'El Sena ', '5', 'emurillo2024@gmail.com', NULL, '3166108184', NULL, '06', '02', 'IE CELMIRA BUENO DE OREJUELA', 'CLL 62B No 1A9-250', '3', NULL, NULL, NULL, NULL, NULL, '1144143431');
 
 -- ----------------------------
 -- Table structure for zonas
 -- ----------------------------
 DROP TABLE IF EXISTS `zonas`;
 CREATE TABLE `zonas`  (
-  `id_zona` int(11) NOT NULL AUTO_INCREMENT,
+  `id_zona` int NOT NULL AUTO_INCREMENT,
   `num_zona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `pues_zona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `mun_zona` varchar(70) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
@@ -503,7 +686,7 @@ CREATE TABLE `zonas`  (
   `dir_zona` varchar(350) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `barr_zona` varchar(80) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `estado_zona` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
-  `total_mesa` int(11) NULL DEFAULT NULL,
+  `total_mesa` int NULL DEFAULT NULL,
   `dpto_zona` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id_zona`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 14871 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = COMPACT;
