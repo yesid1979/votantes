@@ -183,7 +183,7 @@ $(document).ready(function() {
 
     // Load Departamentos on ready
     $.ajax({
-        url: "index.php?url=ajaxGeo/getDepartamentos",
+        url: "index.php?url=ajaxgeo/getDepartamentos",
         method: "POST",
         success: function(html) {
             $('#CboNum_dpto').html(html);
@@ -196,7 +196,7 @@ $(document).ready(function() {
         var dpto = $(this).val();
         if(dpto) {
             $.ajax({
-                url: "index.php?url=ajaxGeo/getMunicipios",
+                url: "index.php?url=ajaxgeo/getMunicipios",
                 method: "POST",
                 data: { departamento: dpto },
                 success: function(html) {
@@ -213,7 +213,7 @@ $(document).ready(function() {
         var muni = $(this).val();
         if(dpto && muni) {
             $.ajax({
-                url: "index.php?url=ajaxGeo/getZonas",
+                url: "index.php?url=ajaxgeo/getZonas",
                 method: "POST",
                 data: { departamento: dpto, municipio: muni },
                 success: function(html) {
@@ -231,7 +231,7 @@ $(document).ready(function() {
         var zona = $(this).val();
         if(dpto && muni && zona) {
             $.ajax({
-                url: "index.php?url=ajaxGeo/getPuestos",
+                url: "index.php?url=ajaxgeo/getPuestos",
                 method: "POST",
                 data: { departamento: dpto, municipio: muni, zona: zona },
                 success: function(html) {
@@ -251,7 +251,7 @@ $(document).ready(function() {
         var puesto = $(this).val();
         if(dpto && muni && zona && puesto) {
              $.ajax({
-                url: "index.php?url=ajaxGeo/getPuestoInfo",
+                url: "index.php?url=ajaxgeo/getPuestoInfo",
                 method: "POST",
                 dataType: "json",
                 data: { departamento: dpto, municipio: muni, zona: zona, puesto: puesto },

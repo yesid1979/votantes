@@ -1,9 +1,5 @@
 <?php
 // Reporte de Detalles de Votos - Safe Version for PHP 5.3.8
-// Desactivar reporte de errores para evitar que mensajes "Deprecated" corrompan el archivo binario
-error_reporting(0);
-ini_set('display_errors', 0);
-
 date_default_timezone_set('America/Bogota');
 ini_set('memory_limit', '256M');
 

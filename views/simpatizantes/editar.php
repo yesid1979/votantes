@@ -191,7 +191,7 @@ $(document).ready(function() {
 
     // Request reverse geo
     $.ajax({
-        url: 'index.php?url=ajaxGeo/getReverseGeo',
+        url: 'index.php?url=ajaxgeo/getReverseGeo',
         method: 'POST',
         data: { zona: currentCargaZona, puesto: currentCargaPuesto },
         dataType: 'json',
@@ -211,7 +211,7 @@ $(document).ready(function() {
 
     function loadDepartamentos(current) {
         $.ajax({
-            url: "index.php?url=ajaxGeo/getDepartamentos",
+            url: "index.php?url=ajaxgeo/getDepartamentos",
             method: "POST",
             data: { current: current },
             success: function(html) {
@@ -228,7 +228,7 @@ $(document).ready(function() {
         if(dpto) {
             var curr = isInitial ? currentCargaMuni : "";
             $.ajax({
-                url: "index.php?url=ajaxGeo/getMunicipios",
+                url: "index.php?url=ajaxgeo/getMunicipios",
                 method: "POST",
                 data: { departamento: dpto, current: curr },
                 success: function(html) {
@@ -249,7 +249,7 @@ $(document).ready(function() {
         if(dpto && muni) {
             var curr = isInitial ? currentCargaZona : "";
             $.ajax({
-                url: "index.php?url=ajaxGeo/getZonas",
+                url: "index.php?url=ajaxgeo/getZonas",
                 method: "POST",
                 data: { departamento: dpto, municipio: muni, current: curr },
                 success: function(html) {
@@ -271,7 +271,7 @@ $(document).ready(function() {
         if(dpto && muni && zona) {
             var curr = isInitial ? currentCargaPuesto : "";
             $.ajax({
-                url: "index.php?url=ajaxGeo/getPuestos",
+                url: "index.php?url=ajaxgeo/getPuestos",
                 method: "POST",
                 data: { departamento: dpto, municipio: muni, zona: zona, current: curr },
                 success: function(html) {
@@ -295,7 +295,7 @@ $(document).ready(function() {
         var puesto = $(this).val();
         if(dpto && muni && zona && puesto) {
              $.ajax({
-                url: "index.php?url=ajaxGeo/getPuestoInfo",
+                url: "index.php?url=ajaxgeo/getPuestoInfo",
                 method: "POST",
                 dataType: "json",
                 data: { departamento: dpto, municipio: muni, zona: zona, puesto: puesto },

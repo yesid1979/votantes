@@ -103,19 +103,19 @@ $tipo_usuario = $_SESSION['tipo_usuario']; // 1: Admin, 2: Digitador, 3: Lider
                 
                 <?php if($puedeVerSimpatizantes): ?>
                 <a href="index.php?url=simpatizante/index" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'simpatizante') !== false) ? 'active' : ''; ?>">
-                    <i class="bi bi-emoji-smile"></i> Simpatizantes
+                    <i class="bi bi-emoji-smile"></i> Simpatizante cercano
                 </a>
                 <?php endif; ?>
                 
                 <?php if($puedeVerVotantes): ?>
                 <a href="index.php?url=votante/index" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'votante') !== false) ? 'active' : ''; ?>">
-                    <i class="bi bi-person-check-fill"></i> Votantes
+                    <i class="bi bi-person-check-fill"></i> Cuerpo electoral
                 </a>
                 <?php endif; ?>
                 
                 <?php if($puedeVerLideres): ?>
                 <a href="index.php?url=lider/index" class="list-group-item list-group-item-action <?php echo (isset($_GET['url']) && strpos($_GET['url'], 'lider') !== false) ? 'active' : ''; ?>">
-                    <i class="bi bi-person-badge"></i> Líderes
+                    <i class="bi bi-person-badge"></i> Líder amigo
                 </a>
                 <?php endif; ?>
 

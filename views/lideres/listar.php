@@ -7,13 +7,13 @@ include 'includes/header_dashboard.php';
 <div class="page-header-container">
     <div class="page-header-title">
         <i class="bi bi-person-badge"></i>
-        <h1>Listado de Líderes</h1>
+        <h1>Listado de Líder amigo</h1>
     </div>
     <nav aria-label="breadcrumb" class="breadcrumb-modern">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php?url=dashboard/index">Home</a></li>
             <li class="breadcrumb-item text-muted">Listado</li>
-            <li class="breadcrumb-item active" aria-current="page">Líderes</li>
+            <li class="breadcrumb-item active" aria-current="page">Líder amigo</li>
         </ol>
     </nav>
 </div>

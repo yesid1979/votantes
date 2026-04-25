@@ -7,13 +7,13 @@ include 'includes/header_dashboard.php';
 <div class="page-header-container">
     <div class="page-header-title">
         <i class="bi bi-person-check-fill"></i>
-        <h1>Listado de Votantes</h1>
+        <h1>Listado de Cuerpo Electoral</h1>
     </div>
     <nav aria-label="breadcrumb" class="breadcrumb-modern">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php?url=dashboard/index">Home</a></li>
             <li class="breadcrumb-item text-muted">Listado</li>
-            <li class="breadcrumb-item active" aria-current="page">Votantes</li>
+            <li class="breadcrumb-item active" aria-current="page">Cuerpo electoral</li>
         </ol>
     </nav>
 </div>

@@ -51,7 +51,7 @@
     <div class="col-xl-3 col-md-6">
         <div class="stats-card" style="border-left-color: #28a745;">
             <div class="stats-info">
-                <p>Simpatizantes</p>
+                <p>Simpatizante cercanos</p>
                 <h3><?php echo $stats['simpatizantes']; ?></h3>
                 <a href="index.php?url=simpatizante/index" class="text-decoration-none small mt-2 d-block" style="color: #28a745;">Ver detalles &rarr;</a>
             </div>
@@ -66,7 +66,7 @@
     <div class="col-xl-3 col-md-6">
         <div class="stats-card" style="border-left-color: #ffc107;">
             <div class="stats-info">
-                <p>Votantes</p>
+                <p>Cuerpo electoral</p>
                 <h3><?php echo $stats['votantes']; ?></h3>
                 <a href="index.php?url=votante/index" class="text-decoration-none small mt-2 d-block" style="color: #ffc107;">Ver detalles &rarr;</a>
             </div>
@@ -81,7 +81,7 @@
     <div class="col-xl-3 col-md-6">
         <div class="stats-card" style="border-left-color: #dc3545;">
             <div class="stats-info">
-                <p>Líderes</p>
+                <p>Líder amigo</p>
                 <h3><?php echo $stats['lideres']; ?></h3>
                 <a href="index.php?url=lider/index" class="text-decoration-none small mt-2 d-block" style="color: #dc3545;">Ver detalles &rarr;</a>
             </div>
