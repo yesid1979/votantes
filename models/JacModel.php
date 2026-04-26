@@ -28,6 +28,10 @@ class JacModel extends Conexion {
                     VALUES (:fecha, :cedula, :nombre, :direccion, :telefono, :ocupacion, :id_comision, :fechnac, :edad, :ced_lider)";
             
             $stmt = $this->db->prepare($sql);
+            
+            $comision = (!empty($data['CboComision'])) ? $data['CboComision'] : null;
+            $lider = (!empty($data['CboLider'])) ? $data['CboLider'] : null;
+
             return $stmt->execute(array(
                 ':fecha' => $data['txtFecha'],
                 ':cedula' => $data['txtCedula'],
@@ -35,10 +39,10 @@ class JacModel extends Conexion {
                 ':direccion' => $data['txtDireccion'],
                 ':telefono' => $data['txtTelefono'],
                 ':ocupacion' => $data['txtOcupacion'],
-                ':id_comision' => $data['CboComision'],
+                ':id_comision' => $comision,
                 ':fechnac' => $data['txtFechnac'],
                 ':edad' => $data['txtEdad'],
-                ':ced_lider' => $data['CboLider']
+                ':ced_lider' => $lider
             ));
         } catch (Exception $e) {
             return false;
@@ -113,6 +117,10 @@ class JacModel extends Conexion {
                 WHERE id_afiliado = :id";
         
         $stmt = $this->db->prepare($sql);
+
+        $comision = (!empty($data['CboComision'])) ? $data['CboComision'] : null;
+        $lider = (!empty($data['CboLider'])) ? $data['CboLider'] : null;
+
         return $stmt->execute(array(
             ':fecha' => $data['txtFecha'],
             ':cedula' => $data['txtCedula'],
@@ -120,10 +128,10 @@ class JacModel extends Conexion {
             ':direccion' => $data['txtDireccion'],
             ':telefono' => $data['txtTelefono'],
             ':ocupacion' => $data['txtOcupacion'],
-            ':id_comision' => $data['CboComision'],
+            ':id_comision' => $comision,
             ':fechnac' => $data['txtFechnac'],
             ':edad' => $data['txtEdad'],
-            ':ced_lider' => $data['CboLider'],
+            ':ced_lider' => $lider,
             ':id' => $data['id_afiliado']
         ));
     }

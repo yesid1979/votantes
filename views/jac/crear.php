@@ -86,13 +86,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating">
-                            <select class="form-select" id="CboLider" name="CboLider" required>
-                                <option value="" selected disabled>Seleccione Líder</option>
+                            <select class="form-select" id="CboLider" name="CboLider">
+                                <option value="" selected>-- Ninguno --</option>
                                 <?php foreach($lideres as $lider): ?>
                                     <option value="<?php echo $lider['ced_lider']; ?>"><?php echo $lider['nom_lider']; ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <label for="CboLider">Líder que Refiere *</label>
+                            <label for="CboLider">Líder que Refiere</label>
                         </div>
                     </div>
                 </div>
