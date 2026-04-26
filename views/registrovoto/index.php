@@ -56,7 +56,8 @@
                         <div class="col-md-3 col-sm-6"><button type="button" class="btn btn-outline-primary w-100 py-3 fw-bold btn-aspirante" data-aspirante="JAL"><i class="bi bi-person-vcard me-2"></i>JAL</button></div>
                         <div class="col-md-3 col-sm-6"><button type="button" class="btn btn-outline-primary w-100 py-3 fw-bold btn-aspirante" data-aspirante="SENADO"><i class="bi bi-person-vcard me-2"></i>SENADO</button></div>
                         <div class="col-md-3 col-sm-6"><button type="button" class="btn btn-outline-primary w-100 py-3 fw-bold btn-aspirante" data-aspirante="CAMARA"><i class="bi bi-person-vcard me-2"></i>CÁMARA</button></div>
-                        <div class="col-md-3 col-sm-6"><button type="button" class="btn btn-outline-primary w-100 py-3 fw-bold btn-aspirante" data-aspirante="PRESIDENCIA"><i class="bi bi-person-vcard me-2"></i>PRESIDENCIA</button></div>
+                         <div class="col-md-3 col-sm-6"><button type="button" class="btn btn-outline-primary w-100 py-3 fw-bold btn-aspirante" data-aspirante="PRESIDENCIA"><i class="bi bi-person-vcard me-2"></i>PRESIDENCIA</button></div>
+                        <div class="col-md-3 col-sm-6"><button type="button" class="btn btn-outline-primary w-100 py-3 fw-bold btn-aspirante" data-aspirante="JAC"><i class="bi bi-person-vcard me-2"></i>JAC</button></div>
                     </div>
                 </div>
             </form>

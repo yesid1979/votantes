@@ -31,6 +31,7 @@
                         <option value="SENADO">SENADO</option>
                         <option value="CAMARA">CÁMARA</option>
                         <option value="PRESIDENCIA">PRESIDENCIA</option>
+                        <option value="JAC">JAC</option>
                     </select>
                 </div>
                 <div class="col-md-3">
@@ -39,13 +40,19 @@
                         <option value="">-- Todos --</option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="filtroMuni" class="form-label">Municipio</label>
                     <select class="form-select" id="filtroMuni">
                         <option value="">-- Todos --</option>
                     </select>
                 </div>
-                <div class="col-md-3 text-end">
+                <div class="col-md-3">
+                    <label for="filtroPuesto" class="form-label">Puesto / JAC</label>
+                    <select class="form-select" id="filtroPuesto">
+                        <option value="">-- Todos --</option>
+                    </select>
+                </div>
+                <div class="col-md-2 text-end">
                     <button id="btnBuscar" class="btn btn-primary w-100"><i class="bi bi-search"></i> Ver Resultados</button>
                 </div>
             </div>
@@ -152,6 +159,7 @@ $(document).ready(function() {
         var dpto = $(this).val();
         if(!dpto) {
             $('#filtroMuni').html('<option value="">-- Todos --</option>');
+            $('#filtroPuesto').html('<option value="">-- Todos --</option>');
             return;
         }
         $.ajax({
@@ -164,18 +172,37 @@ $(document).ready(function() {
         });
     });
 
+    // Cargar puestos al cambiar municipio
+    $('#filtroMuni').change(function() {
+        var dpto = $('#filtroDpto').val();
+        var muni = $(this).val();
+        if(!muni) {
+            $('#filtroPuesto').html('<option value="">-- Todos --</option>');
+            return;
+        }
+        $.ajax({
+            url: 'index.php?url=ajaxgeo/getpuestosbymuni',
+            method: 'POST',
+            data: { departamento: dpto, municipio: muni },
+            success: function(response) {
+                $('#filtroPuesto').html(response);
+            }
+        });
+    });
+
     // Lógica para buscar resultados
     function cargarResultados() {
         var aspirante = $('#filtroAspirante').val();
         var dpto = $('#filtroDpto').val();
         var muni = $('#filtroMuni').val();
+        var puesto = $('#filtroPuesto').val();
         
         $('#contenedorResultados').html('<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div><h5 class="mt-3">Calculando resultados...</h5></div>');
         
         $.ajax({
             url: 'index.php?url=registrovoto/ajaxResultados',
             method: 'POST',
-            data: { aspirante: aspirante, dpto: dpto, muni: muni },
+            data: { aspirante: aspirante, dpto: dpto, muni: muni, puesto: puesto },
             dataType: 'json',
             success: function(res) {
                 if (res.status === 'success') {
@@ -239,7 +266,7 @@ $(document).ready(function() {
                                             <small class="text-muted">Votos Reales</small>
                                         </div>
                                         <div class="col-md-1 text-center">
-                                            <a href="index.php?url=registrovoto/detalle&id_candidato=${encodeURIComponent(cand.id_candidato)}&aspirante=${encodeURIComponent(aspirante)}&dpto=${encodeURIComponent(dpto)}&muni=${encodeURIComponent(muni)}" 
+                                            <a href="index.php?url=registrovoto/detalle&id_candidato=${encodeURIComponent(cand.id_candidato)}&aspirante=${encodeURIComponent(aspirante)}&dpto=${encodeURIComponent(dpto)}&muni=${encodeURIComponent(muni)}&puesto=${encodeURIComponent(puesto)}" 
                                                class="btn btn-outline-primary btn-sm" title="Ver detalle por Zona/Puesto">
                                                 <i class="bi bi-zoom-in"></i><br><small>Detalle</small>
                                             </a>
@@ -269,9 +296,11 @@ $(document).ready(function() {
         var asp  = $('#filtroAspirante').val();
         var dpto = $('#filtroDpto').val();
         var muni = $('#filtroMuni').val();
+        var pto  = $('#filtroPuesto').val();
         var qs   = 'aspirante=' + encodeURIComponent(asp)
                  + '&dpto='      + encodeURIComponent(dpto)
-                 + '&muni='      + encodeURIComponent(muni);
+                 + '&muni='      + encodeURIComponent(muni)
+                 + '&puesto='    + encodeURIComponent(pto);
         $('#btnPdfConsolidado').attr('href',   'formatos/votos_consolidado_pdf.php?'   + qs);
         $('#btnExcelConsolidado').attr('href',  'formatos/votos_consolidado_excel.php?' + qs);
         $('#btnDescargas').show();

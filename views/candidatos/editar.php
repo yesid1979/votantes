@@ -70,6 +70,7 @@
                                 <option value="SENADO" <?php echo $candidato['aspirante_a'] == 'SENADO' ? 'selected' : ''; ?>>SENADO</option>
                                 <option value="CAMARA" <?php echo $candidato['aspirante_a'] == 'CAMARA' ? 'selected' : ''; ?>>CÁMARA</option>
                                 <option value="PRESIDENCIA" <?php echo $candidato['aspirante_a'] == 'PRESIDENCIA' ? 'selected' : ''; ?>>PRESIDENCIA</option>
+                                <option value="JAC" <?php echo $candidato['aspirante_a'] == 'JAC' ? 'selected' : ''; ?>>JAC</option>
                             </select>
                             <label for="txtAspirante">Aspira a *</label>
                         </div>

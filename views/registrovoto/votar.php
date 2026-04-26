@@ -68,11 +68,21 @@
 
                 <hr class="text-muted">
 
-                <h5 class="mb-3 text-muted fw-bold"><i class="bi bi-list-ol"></i> Digite los votos por mesa:</h5>
+                <h5 class="mb-3 text-muted fw-bold"><i class="bi bi-list-ol"></i> <?php echo ($aspirante == 'JAC') ? 'Digite el total de votos obtenidos:' : 'Digite los votos por mesa:'; ?></h5>
                 <div class="row g-3">
                     <?php 
-                    // Si total_mesa es 0, mostramos un aviso
-                    if ($total_mesa == 0): 
+                    if ($aspirante == 'JAC'): 
+                    ?>
+                        <div class="col-md-4 offset-md-4">
+                            <div class="form-floating shadow-sm border border-success rounded">
+                                <input type="number" class="form-control text-center fs-2 fw-bold text-success input-votos" 
+                                       id="mesa_1" name="mesas[1]" placeholder="0" min="0">
+                                <label for="mesa_1" class="text-success fw-bold">TOTAL VOTOS PLANCHA / CANDIDATO</label>
+                            </div>
+                        </div>
+                    <?php 
+                    // Si total_mesa es 0 y NO es JAC, mostramos un aviso
+                    elseif ($total_mesa == 0): 
                     ?>
                         <div class="col-12 text-center py-4">
                             <div class="alert alert-warning d-inline-block">
@@ -96,7 +106,7 @@
                     ?>
                 </div>
 
-                <?php if ($total_mesa > 0): ?>
+                <?php if ($total_mesa > 0 || $aspirante == 'JAC'): ?>
                 <div class="mt-4 p-3 bg-light rounded border border-2 border-primary d-flex justify-content-between align-items-center">
                     <div class="fs-4 fw-bold">Total Votos Ingresados: <span id="lblTotalVotos" class="text-success">0</span></div>
                     <div>

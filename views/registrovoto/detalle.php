@@ -109,7 +109,7 @@
                 <?php foreach($grupo['mesas'] as $m): ?>
                 <div class="col-md-1 col-sm-2 col-3">
                     <div class="text-center p-2 border rounded bg-white shadow-sm">
-                        <div class="text-muted small fw-bold">Mesa <?php echo str_pad($m['mesa'], 2, '0', STR_PAD_LEFT); ?></div>
+                        <div class="text-muted small fw-bold"><?php echo ($aspirante == 'JAC') ? 'Resultado Total' : 'Mesa ' . str_pad($m['mesa'], 2, '0', STR_PAD_LEFT); ?></div>
                         <div class="fs-5 fw-bold text-primary"><?php echo number_format($m['votos']); ?></div>
                     </div>
                 </div>

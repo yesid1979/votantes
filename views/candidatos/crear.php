@@ -67,6 +67,7 @@
                                 <option value="SENADO">SENADO</option>
                                 <option value="CAMARA">CÁMARA</option>
                                 <option value="PRESIDENCIA">PRESIDENCIA</option>
+                                <option value="JAC">JAC</option>
                             </select>
                             <label for="txtAspirante">Aspira a *</label>
                         </div>
